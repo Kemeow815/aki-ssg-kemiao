@@ -31,7 +31,6 @@ export default async function PostPage({
 	};
 }) {
 	const cms = await initCMS();
-	console.log(cms.getPostId());
 	const post = cms.getPost(parseInt((await params).id.toString()));
 	if (post === undefined) {
 		notFound();
