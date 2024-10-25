@@ -7,7 +7,7 @@ declare type PageMetadata = {
 	slug: string;
 	enable_comment: boolean;
 	allow_index: boolean;
-	navigation_title: string?;
+	navigation_title?: string;
 	navigation_index: number;
 };
 declare type Page = Content & PageMetadata;
