@@ -4,6 +4,7 @@ import { config } from "@/data/site-config";
 import Navigation from "@/components/Navigation";
 import CommonLogic from "@/components/LogicComponents/CommonLogic";
 import { initCMS } from "@/libs/content-management";
+import Header from "@/components/Header";
 
 export const metadata: Metadata = {
 	title: config.blog.title,
@@ -33,6 +34,7 @@ export default async function RootLayout({
 		<html className="font-crf scroll-smooth" lang="zh-CN">
 			<body className="dark:bg-gray-950 dark:text-gray-300/80 transition-colors duration-500">
 				<Navigation links={links} />
+				<Header />
 				{children}
 				<CommonLogic />
 			</body>
