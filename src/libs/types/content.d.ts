@@ -1,6 +1,7 @@
 declare type Content = {
 	title: string;
 	original_content: string;
+	markdown_content: RenderableContent;
 };
 declare type PageMetadata = {
 	slug: string;
@@ -16,9 +17,9 @@ declare type PostMetadata = {
 	modified_at: Date;
 };
 declare type Post = PostMetadata & Content;
-declare interface MarkdownContent {
+declare interface RenderableContent {
 	toReactNode(): React.ReactNode;
-	toToc(): TocItem[];
+	toToc(): Result;
 	toRssFeed(): string;
 }
 declare type TocItem = {
