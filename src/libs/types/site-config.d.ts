@@ -14,8 +14,27 @@ declare type FollowConfig = {
 	feed_id: number;
 };
 
+declare type StyleConfig = {
+	primary_color: string;
+	header_image: {
+		default: string;
+		dark: string;
+	};
+};
+
+declare type PartialStyleConfig = {
+	primary_color?: string;
+	header_image?:
+		| {
+				default: string;
+				dark: string;
+		  }
+		| string;
+};
+
 declare type SiteConfig = {
 	blog: BlogConfig;
+	style: StyleConfig;
 	comment: CommentConfig;
 	gravatar_mirror: string;
 	follow?: FollowConfig;
@@ -23,6 +42,7 @@ declare type SiteConfig = {
 
 declare type PartialSiteConfig = {
 	blog?: Partial<BlogConfig>;
+	style: PartialStyleConfig;
 	comment?: CommentConfig;
 	gravatar_mirror?: string;
 	follow?: FollowConfig;

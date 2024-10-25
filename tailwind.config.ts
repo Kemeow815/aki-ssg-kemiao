@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { config as siteConfig } from "@/data/site-config";
 
 const config: Config = {
 	content: [
@@ -9,10 +10,11 @@ const config: Config = {
 	theme: {
 		extend: {
 			backgroundImage: {
-				furry: "url('https://blog-oss.allenyou.top/image/658ad4c208349.png')",
+				default: `url('${siteConfig.style.header_image.default}')`,
+				dark: `url('${siteConfig.style.header_image.dark}')`,
 			},
 			colors: {
-				primary: "#6db0ec",
+				primary: siteConfig.style.primary_color,
 			},
 			fontFamily: {
 				crf: ["ChillRoundF"],
