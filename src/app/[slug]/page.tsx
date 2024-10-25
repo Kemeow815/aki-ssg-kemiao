@@ -10,10 +10,18 @@ export var metadata: Metadata = {
 
 export async function generateStaticParams() {
 	const cms = await initCMS();
-	return cms.getPageSlug();
+	return cms.getPageSlug().map((s) => {
+		return {
+			slug: s,
+		};
+	});
 }
 
-export default async function CustomPage(params: { slug: string }) {
+export default async function CustomPage({
+	params,
+}: {
+	params: { slug: string };
+}) {
 	const cms = await initCMS();
 	const page = cms.getPage((await params).slug);
 	if (page === undefined) {
