@@ -36,7 +36,9 @@ export default async function RootLayout({
 			<body className="dark:bg-gray-950 dark:text-gray-300/80 text-black transition-colors duration-200">
 				<Navigation links={links} />
 				<Header />
-				{children}
+				<main className="flex justify-center -mt-32 z-10 relative w-full gap-4">
+					{children}
+				</main>
 				<Footer />
 				<CommonLogic />
 			</body>
