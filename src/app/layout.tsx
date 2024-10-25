@@ -5,6 +5,7 @@ import Navigation from "@/components/Navigation";
 import CommonLogic from "@/components/LogicComponents/CommonLogic";
 import { initCMS } from "@/libs/content-management";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
 	title: config.blog.title,
@@ -36,6 +37,7 @@ export default async function RootLayout({
 				<Navigation links={links} />
 				<Header />
 				{children}
+				<Footer />
 				<CommonLogic />
 			</body>
 		</html>
