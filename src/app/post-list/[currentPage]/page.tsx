@@ -1,9 +1,10 @@
+import { config } from "@/data/site-config";
 import { initCMS } from "@/libs/content-management";
 import { connectString } from "@/utils/connectString";
 import { Metadata } from "next";
 import Link from "next/link";
 
-export var metadata: Metadata = { title: "文章列表" };
+export var metadata: Metadata = { title: "文章列表 - ${config.blog.title}" };
 
 export async function generateStaticParams() {
 	const cms = await initCMS();
@@ -60,7 +61,9 @@ export default async function PostListPage({
 		currentPage: number;
 	};
 }) {
-	metadata = { title: `文章列表 - 第${params.currentPage}页` };
+	metadata = {
+		title: `文章列表 - 第${params.currentPage}页 - ${config.blog.title}`,
+	};
 	const cms = await initCMS();
 	const posts = cms.getPostsByPage(params.currentPage);
 	const postList = posts.map((post, index) => {
