@@ -46,11 +46,11 @@ const config: Config = {
 				},
 			}),
 		},
-		darkMode: "class",
 		hljs: {
 			theme: "night-owl",
 		},
 	},
+	darkMode: "class",
 	plugins: [require("@tailwindcss/typography"), require("tailwind-hljs")],
 };
 export default config;
