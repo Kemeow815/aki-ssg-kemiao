@@ -6,7 +6,7 @@ import Link from "next/link";
 import { connectString } from "@/utils/connectString";
 import { useAtom, useAtomValue } from "jotai";
 import { darkMode, scrollY } from "@/libs/state-management";
-import { useCallback, useState, useTransition } from "react";
+import { startTransition, useCallback, useState, useTransition } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faCircleHalfStroke,
@@ -42,21 +42,23 @@ function getDarkModeIcon(mode: "auto" | "light" | "dark") {
 export function DarkModeSwitcher() {
 	const [theme, setTheme] = useAtom(darkMode);
 	const handler = useCallback(() => {
-		switch (theme) {
-			case "auto":
-				setTheme("light");
-				break;
-			case "light":
-				setTheme("dark");
-				break;
-			case "dark":
-				setTheme("auto");
-				break;
-		}
+		startTransition(() => {
+			switch (theme) {
+				case "auto":
+					setTheme("light");
+					break;
+				case "light":
+					setTheme("dark");
+					break;
+				case "dark":
+					setTheme("auto");
+					break;
+			}
+		});
 	}, [theme, setTheme]);
 	return (
 		<button
-			className="text-3xl align-baseline hover:opacity-80 w-8"
+			className="text-2xl align-baseline w-12 h-12"
 			onClick={handler}
 			title={`切换深色模式状态（当前：${getDarkModeAlt(theme)}）`}>
 			<FontAwesomeIcon icon={getDarkModeIcon(theme)} />
@@ -133,21 +135,23 @@ export default function Navigation({
 							);
 						})}
 					</ul>
-					<DarkModeSwitcher />
-					<button
-						className="w-12 h-12 md:hidden flex items-center justify-center rounded-full md:-ms-3 transition-colors bg-white bg-opacity-0 active:bg-opacity-10"
-						onClick={() => {
-							toggleExpand();
-						}}>
-						<span className="block relative w-5 h-5" aria-hidden="true">
-							<span
-								className={`duration-200 block w-5 h-[0.225rem] bg-black dark:bg-white rounded-full burger-bar-1--s${menuStep} absolute left-1/2`}></span>
-							<span
-								className={`duration-200 block w-5 h-[0.225rem] bg-black dark:bg-white rounded-full burger-bar-2--s${menuStep} absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2`}></span>
-							<span
-								className={`duration-200 block w-5 h-[0.225rem] bg-black dark:bg-white rounded-full burger-bar-3--s${menuStep} absolute left-1/2`}></span>
-						</span>
-					</button>
+					<div className="flex gap-1">
+						<DarkModeSwitcher />
+						<button
+							className="w-12 h-12 md:hidden flex items-center justify-center rounded-full md:-ms-3 transition-colors bg-white bg-opacity-0 active:bg-opacity-10"
+							onClick={() => {
+								toggleExpand();
+							}}>
+							<span className="block relative w-5 h-5" aria-hidden="true">
+								<span
+									className={`duration-200 block w-5 h-[0.225rem] bg-black dark:bg-gray-300/80 rounded-full burger-bar-1--s${menuStep} absolute left-1/2`}></span>
+								<span
+									className={`duration-200 block w-5 h-[0.225rem] bg-black dark:bg-gray-300/80 rounded-full burger-bar-2--s${menuStep} absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2`}></span>
+								<span
+									className={`duration-200 block w-5 h-[0.225rem] bg-black dark:bg-gray-300/80 rounded-full burger-bar-3--s${menuStep} absolute left-1/2`}></span>
+							</span>
+						</button>
+					</div>
 				</div>
 				<hr
 					className={connectString([

@@ -32,7 +32,7 @@ export default async function RootLayout({
 		});
 	return (
 		<html className="font-crf scroll-smooth" lang="zh-CN">
-			<body className="dark:bg-gray-950 dark:text-gray-300/80 transition-colors duration-500">
+			<body className="dark:bg-gray-950 dark:text-gray-300/80 text-black transition-colors duration-200">
 				<Navigation links={links} />
 				<Header />
 				{children}
