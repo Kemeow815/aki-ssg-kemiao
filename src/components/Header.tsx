@@ -15,7 +15,7 @@ export default function Header() {
 				</div>
 			</div>
 			<div className="fixed hidden dark:block w-full h-full bg-black opacity-50"></div>
-			<div className="flex-none h-32 w-full bg-gradient-to-b from-transparent to-white dark:to-gray-950"></div>
+			<div className="flex-none h-32 w-full bg-gradient-to-b from-transparent to-white dark:to-gray-950 transition-colors duration-200"></div>
 		</header>
 	);
 }
