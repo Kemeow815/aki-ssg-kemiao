@@ -3,6 +3,7 @@ import { promises as fs } from "fs";
 import fm from "front-matter";
 import path from "path";
 import React from "react";
+import { MarkdownContent } from "./markdown-render";
 
 class CMS {
 	private friend_links: FriendLink[] = [];
@@ -45,6 +46,7 @@ class CMS {
 										id,
 										title,
 										original_content: data.body,
+										markdown_content: new MarkdownContent(data.body),
 										description:
 											attr.description === undefined
 												? "暂无描述"
@@ -92,6 +94,7 @@ class CMS {
 										slug,
 										title,
 										original_content: data.body,
+										markdown_content: new MarkdownContent(data.body),
 										enable_comment:
 											attr.enable_comment === undefined ||
 											typeof attr.enable_comment !== "boolean"
