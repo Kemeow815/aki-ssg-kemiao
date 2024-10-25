@@ -14,6 +14,7 @@ import {
 	faSun,
 } from "@fortawesome/free-solid-svg-icons";
 import "@/styles/animations.css";
+import { config } from "@/data/site-config";
 
 // import AllenyouLink from "./AllenyouLink";
 
@@ -116,7 +117,7 @@ export default function Navigation({
 				<div className="h-20 py-2 pl-2 pr-4 w-full flex justify-between items-center gap-8 flex-shrink-0">
 					<Link href="/">
 						<img
-							src={`${getAvatar("allenyou1126@gmail.com")}?s=80`}
+							src={getAvatar(config.author.email, 80)}
 							width={60}
 							height={60}
 							alt="Avatar"
