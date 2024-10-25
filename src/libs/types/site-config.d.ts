@@ -2,6 +2,7 @@ declare type BlogConfig = {
 	hostname: string;
 	title: string;
 	description: string;
+	favicon: string;
 };
 
 declare type DisableComment = { enabled: false };
