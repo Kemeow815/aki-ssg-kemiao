@@ -9,17 +9,23 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"@fortawesome/fontawesome-common-types": "^6.6.0",
+		"@fortawesome/fontawesome-svg-core": "^6.6.0",
+		"@fortawesome/free-brands-svg-icons": "^6.6.0",
+		"@fortawesome/free-regular-svg-icons": "^6.6.0",
+		"@fortawesome/free-solid-svg-icons": "^6.6.0",
+		"@fortawesome/react-fontawesome": "^0.2.2",
 		"@tailwindcss/typography": "^0.5.15",
 		"@types/hast": "^3.0.4",
 		"@types/mdast": "^4.0.4",
 		"babel-plugin-react-compiler": "19.0.0-beta-8a03594-20241020",
 		"front-matter": "^4.0.2",
-		"hast-util-sanitize": "^5.0.1",
 		"hast-util-to-html": "^9.0.3",
 		"hast-util-to-jsx-runtime": "^2.3.2",
 		"highlight.js": "^10.7.3",
 		"jotai": "^2.10.1",
 		"jsdom": "^23.2.0",
+		"md5-ts": "^0.1.6",
 		"mdast-util-toc": "^7.1.0",
 		"next": "15.0.1",
 		"react": "19.0.0-rc-45804af1-20241021",
@@ -45,7 +51,7 @@
 		"vfile": "^6.0.3"
 	},
 	"devDependencies": {
-		"@types/node": "^20.16.15",
+		"@types/node": "^20.17.0",
 		"@types/react": "^18.3.12",
 		"@types/react-dom": "^18.3.1",
 		"@types/rss": "^0.0.32",
