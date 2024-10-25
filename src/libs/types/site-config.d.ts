@@ -42,7 +42,7 @@ declare type SiteConfig = {
 
 declare type PartialSiteConfig = {
 	blog?: Partial<BlogConfig>;
-	style: PartialStyleConfig;
+	style?: PartialStyleConfig;
 	comment?: CommentConfig;
 	gravatar_mirror?: string;
 	follow?: FollowConfig;
