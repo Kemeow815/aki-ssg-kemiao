@@ -2,8 +2,8 @@ export function createConfig(c: PartialSiteConfig): SiteConfig {
 	const ret: SiteConfig = {
 		author: {
 			name: "Test",
-			email: "test@example.com"
-		}
+			email: "test@example.com",
+		},
 		blog: {
 			hostname: "example.com",
 			title: "Aki-SSG",
