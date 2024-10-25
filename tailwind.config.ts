@@ -19,6 +19,9 @@ const config: Config = {
 			fontFamily: {
 				crf: ["ChillRoundF"],
 			},
+			height: {
+				nav: "var(--nav-height)",
+			},
 			typography: ({ theme }: any) => ({
 				ay: {
 					css: {
