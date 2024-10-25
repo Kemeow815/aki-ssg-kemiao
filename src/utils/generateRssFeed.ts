@@ -29,7 +29,7 @@ export function generateRssFeed() {
 			const post = cms.getPost(id)!;
 			feed.item({
 				title: post.title,
-				description: post.description,
+				description: post.markdown_content.toRssFeed(),
 				url: `https://${config.blog.hostname}/post/${id}`,
 				date: post.modified_at,
 			});
