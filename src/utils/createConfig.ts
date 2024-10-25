@@ -1,5 +1,9 @@
 export function createConfig(c: PartialSiteConfig): SiteConfig {
 	const ret: SiteConfig = {
+		author: {
+			name: "Test",
+			email: "test@example.com"
+		}
 		blog: {
 			hostname: "example.com",
 			title: "Aki-SSG",
@@ -36,6 +40,14 @@ export function createConfig(c: PartialSiteConfig): SiteConfig {
 		}
 		if (c.blog.favicon !== undefined) {
 			ret.blog.favicon = c.blog.favicon;
+		}
+	}
+	if (c.author !== undefined) {
+		if (c.author.name !== undefined) {
+			ret.author.name = c.author.name;
+		}
+		if (c.author.email !== undefined) {
+			ret.author.email = c.author.email;
 		}
 	}
 	if (c.follow !== undefined) {

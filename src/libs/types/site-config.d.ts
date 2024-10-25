@@ -1,3 +1,8 @@
+declare type AuthorConfig = {
+	name: string;
+	email: string;
+};
+
 declare type BlogConfig = {
 	hostname: string;
 	title: string;
@@ -34,6 +39,7 @@ declare type PartialStyleConfig = {
 };
 
 declare type SiteConfig = {
+	author: AuthorConfig;
 	blog: BlogConfig;
 	style: StyleConfig;
 	comment: CommentConfig;
@@ -42,6 +48,7 @@ declare type SiteConfig = {
 };
 
 declare type PartialSiteConfig = {
+	author?: Partial<AuthorConfig>;
 	blog?: Partial<BlogConfig>;
 	style?: PartialStyleConfig;
 	comment?: CommentConfig;
