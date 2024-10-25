@@ -2,6 +2,7 @@
 // import Copyright from "@/components/Copyright";
 // import OutdateTip from "@/components/OutdateTip";
 // import Toc from "@/components/Toc";
+import Copyright from "@/components/Copyright";
 import { config } from "@/data/site-config";
 import { initCMS } from "@/libs/content-management";
 import { Metadata } from "next";
@@ -49,7 +50,7 @@ export default async function PostPage({
 				<div className="prose prose-ay dark:prose-invert max-w-4xl break-all my-8">
 					{post.markdown_content.toReactNode()}
 				</div>
-				{/* <Copyright title={post.title} id={params.id} /> */}
+				<Copyright title={post.title} id={params.id} />
 				{/* <Comments /> */}
 			</div>
 			{/* <Toc toc={post.tocContent} /> */}
