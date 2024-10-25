@@ -41,7 +41,7 @@ function getDarkModeIcon(mode: "auto" | "light" | "dark") {
 
 export function DarkModeSwitcher() {
 	const [theme, setTheme] = useAtom(darkMode);
-	const handler = () => {
+	const handler = useCallback(() => {
 		switch (theme) {
 			case "auto":
 				setTheme("light");
@@ -53,7 +53,7 @@ export function DarkModeSwitcher() {
 				setTheme("auto");
 				break;
 		}
-	};
+	}, [theme, setTheme]);
 	return (
 		<button
 			className="text-3xl align-baseline hover:opacity-80 w-8"
