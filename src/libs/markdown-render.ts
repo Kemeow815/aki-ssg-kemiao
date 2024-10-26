@@ -11,7 +11,7 @@ import type { Root as MdashRoot } from "mdast";
 import { Result, toc } from "mdast-util-toc";
 import { Fragment, jsx, jsxs } from "react/jsx-runtime";
 import rehypeMathjax from "rehype-mathjax";
-import rehypeSanitize from "rehype-sanitize";
+import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 import rehypeHighlight from "rehype-highlight";
 import rehypeHighlightCodeLines from "rehype-highlight-code-lines";
 import rehypeSlug from "rehype-slug";
@@ -24,6 +24,15 @@ import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
 import { VFile } from "vfile";
+import { remarkBilibili } from "./markdown-extension/remark-bilibili";
+import BilibiliVideo from "@/components/ExtendedMarkdown/BilibiliVideo";
+import NeteaseMusic from "@/components/ExtendedMarkdown/NeteaseMusic";
+import { remarkNeteaseMusic } from "./markdown-extension/remark-netease-music";
+
+const extended_components = {
+	bilibili: BilibiliVideo,
+	"netease-music": NeteaseMusic,
+};
 
 const pipeline = unified()
 	.use(remarkParse)
@@ -32,12 +41,16 @@ const pipeline = unified()
 	.use(remarkMath)
 	.use(remarkDirective)
 	.use(remarkDirectiveRehype)
+	.use(remarkBilibili)
+	.use(remarkNeteaseMusic)
 	.use(remarkRehype, { allowDangerousHtml: true })
 	.use(rehypeSlug, {})
 	.use(rehypeHighlightCodeLines, {
 		showLineNumbers: true,
 	})
-	.use(rehypeSanitize)
+	.use(rehypeSanitize, {
+		tagNames: defaultSchema.tagNames?.concat(Object.keys(extended_components)),
+	})
 	.use(rehypeMathjax, {})
 	.use(rehypeHighlight, {
 		plainText: ["plain", "txt", "plaintext"],
@@ -86,7 +99,9 @@ export class MarkdownContent implements RenderableContent {
 			this.hastTree &&
 			toJsxRuntime(this.hastTree, {
 				Fragment,
-				components: {},
+				components: {
+					...extended_components,
+				} as any,
 				ignoreInvalidStyle: true,
 				jsx,
 				jsxs,
