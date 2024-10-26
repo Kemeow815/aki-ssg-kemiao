@@ -14,7 +14,6 @@ import rehypeMathjax from "rehype-mathjax";
 import rehypeSanitize from "rehype-sanitize";
 import rehypeHighlight from "rehype-highlight";
 import rehypeHighlightCodeLines from "rehype-highlight-code-lines";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
 import remarkDirective from "remark-directive";
 import remarkDirectiveRehype from "remark-directive-rehype";
@@ -35,22 +34,6 @@ const pipeline = unified()
 	.use(remarkDirectiveRehype)
 	.use(remarkRehype, { allowDangerousHtml: true })
 	.use(rehypeSlug, {})
-	.use(rehypeAutolinkHeadings, {
-		behavior: "append",
-		properties: {
-			// className: "xlog-anchor",
-			ariaHidden: true,
-			tabIndex: -1,
-		},
-		content(_node) {
-			return [
-				{
-					type: "text",
-					value: "#",
-				},
-			];
-		},
-	})
 	.use(rehypeHighlightCodeLines, {
 		showLineNumbers: true,
 	})
