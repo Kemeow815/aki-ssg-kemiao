@@ -1,9 +1,8 @@
 // import { Comments } from "@/components/Comments";
-// import Copyright from "@/components/Copyright";
-// import OutdateTip from "@/components/OutdateTip";
-// import Toc from "@/components/Toc";
+import { Result } from "mdast-util-toc";
 import Copyright from "@/components/Copyright";
 import OutdateTip from "@/components/OutdateTip";
+import Toc from "@/components/Toc";
 import { config } from "@/data/site-config";
 import { initCMS } from "@/libs/content-management";
 import { Metadata } from "next";
@@ -53,7 +52,7 @@ export default async function PostPage({
 				<Copyright title={post.title} id={(await params).id} />
 				{/* <Comments /> */}
 			</div>
-			{/* <Toc toc={post.tocContent} /> */}
+			<Toc toc={post.markdown_content.toToc().map} />
 		</>
 	);
 }
