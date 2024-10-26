@@ -19,6 +19,7 @@
 		"@types/hast": "^3.0.4",
 		"@types/mdast": "^4.0.4",
 		"@waline/api": "1.0.0-alpha.8",
+		"aplayer-ts": "^2.4.5",
 		"babel-plugin-react-compiler": "19.0.0-beta-8a03594-20241020",
 		"front-matter": "^4.0.2",
 		"hast-util-from-html": "^2.0.3",
@@ -52,6 +53,7 @@
 		"swr": "^2.2.5",
 		"tailwind-hljs": "^1.0.0",
 		"unified": "^11.0.5",
+		"unist-util-visit": "^5.0.0",
 		"vfile": "^6.0.3"
 	},
 	"devDependencies": {
