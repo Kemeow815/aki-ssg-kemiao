@@ -27,11 +27,11 @@ You should add this to your virtual host configuration file.
 
 ```
 location / {
-    try_files $uri $uri.html $uri/ =404;
+	try_files $uri $uri.html $uri/ =404;
 }
 error_page 404 /404.html;
 location = /404.html {
-    internal;
+	internal;
 }
 ```
 
@@ -57,7 +57,7 @@ export const config: SiteConfig = createConfig({
 		},
 		style: {
 			primary_color: "#6db0ec", // The primary color of site.
-            header_image: "https://blog-oss.allenyou.top/image/658ad4c208349.png", // The header image of site.
+			header_image: "https://blog-oss.allenyou.top/image/658ad4c208349.png", // The header image of site.
 			header_image: { // Or you can use this to set different images for light or dark mode.
 				default: "https://blog-oss.allenyou.top/image/658ad4c208349.png", // Light mode
 				dark: "https://blog-oss.allenyou.top/image/658ad4c208349.png", // Dark mode
@@ -68,9 +68,9 @@ export const config: SiteConfig = createConfig({
 		},
 		comment: { // Or set it to enable waline comment.
 			enabled: true,
-            waline_api: ""
+			waline_api: ""
 		},
-        // Gravatar mirror to use.
+		// Gravatar mirror to use.
 		gravatar_mirror: "https://gravatar.com/avatar/",
 	};);
 ```

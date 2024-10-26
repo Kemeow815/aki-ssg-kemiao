@@ -27,11 +27,11 @@ Aki-SSG 是一个静态网站生成器，它将您的 Markdown 内容转换为�
 
 ```
 location / {
-    try_files $uri $uri.html $uri/ =404;
+	try_files $uri $uri.html $uri/ =404;
 }
 error_page 404 /404.html;
 location = /404.html {
-    internal;
+	internal;
 }
 ```
 
@@ -57,7 +57,7 @@ export const config: SiteConfig = createConfig({
 		},
 		style: {
 			primary_color: "#6db0ec", // 网站主题色
-            header_image: "https://blog-oss.allenyou.top/image/658ad4c208349.png", // 网站 Header 图像
+			header_image: "https://blog-oss.allenyou.top/image/658ad4c208349.png", // 网站 Header 图像
 			header_image: { // 也可以用这种方法为深色模式和浅色模式分别配置不同的图像
 				default: "https://blog-oss.allenyou.top/image/658ad4c208349.png", // 浅色模式
 				dark: "https://blog-oss.allenyou.top/image/658ad4c208349.png", // 深色模式
@@ -68,9 +68,9 @@ export const config: SiteConfig = createConfig({
 		},
 		comment: { // 如下设置启用 Waline 评论
 			enabled: true,
-            waline_api: ""
+			waline_api: ""
 		},
-        // Gravatar 镜像源
+		// Gravatar 镜像源
 		gravatar_mirror: "https://gravatar.com/avatar/",
 	};);
 ```
