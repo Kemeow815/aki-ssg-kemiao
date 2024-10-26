@@ -3,7 +3,7 @@ import { initCMS } from "@/libs/content-management";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-export var metadata: Metadata = {
+export let metadata: Metadata = {
 	title: `页面 - ${config.blog.title}`,
 	description: "没有描述",
 };

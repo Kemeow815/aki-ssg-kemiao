@@ -1,4 +1,3 @@
-"use client";
 import { config } from "@/data/site-config";
 import { Metadata } from "next";
 import Link from "next/link";

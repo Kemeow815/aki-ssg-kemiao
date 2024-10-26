@@ -24,9 +24,9 @@ export async function generateStaticParams() {
 export default async function PostPage({
 	params,
 }: {
-	params: {
+	params: Promise<{
 		id: number;
-	};
+	}>;
 }) {
 	const cms = await initCMS();
 	const post = cms.getPost(parseInt((await params).id.toString()));

@@ -1,3 +1,5 @@
+export const dynamic = "force-static";
+
 import { config } from "@/data/site-config";
 import { initCMS } from "@/libs/content-management";
 import { generateRssFeed } from "@/utils/generateRssFeed";
