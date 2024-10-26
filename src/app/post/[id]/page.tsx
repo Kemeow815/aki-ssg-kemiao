@@ -1,4 +1,5 @@
 // import { Comments } from "@/components/Comments";
+import { Comments } from "@/components/Comments";
 import Copyright from "@/components/Copyright";
 import OutdateTip from "@/components/OutdateTip";
 import Toc from "@/components/Toc";
@@ -49,7 +50,7 @@ export default async function PostPage({
 					{post.markdown_content.toReactNode()}
 				</div>
 				<Copyright title={post.title} id={(await params).id} />
-				{/* <Comments /> */}
+				<Comments />
 			</div>
 			<Toc toc={post.markdown_content.toToc().map} />
 		</>

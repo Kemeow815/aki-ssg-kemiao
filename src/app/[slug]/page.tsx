@@ -1,3 +1,4 @@
+import { Comments } from "@/components/Comments";
 import { config } from "@/data/site-config";
 import { initCMS } from "@/libs/content-management";
 import { Metadata } from "next";
@@ -39,7 +40,7 @@ export default async function CustomPage({
 				<div className="prose prose-ay dark:prose-invert max-w-4xl break-all my-8">
 					{page.markdown_content.toReactNode()}
 				</div>
-				{/* {page.enable_comment && <Comments />} */}
+				{page.enable_comment && <Comments />}
 			</div>
 		</>
 	);
