@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
 	return (
-		<div className=" text-center rounded-3xl bg-white/70 dark:bg-gray-950/70 backdrop-blur-lg backdrop-filter w-full max-w-4xl md:w-4xl p-6">
+		<div className=" text-center rounded-3xl bg-white/70 dark:bg-gray-950/70 backdrop-blur-lg backdrop-filter w-full max-w-4xl md:w-4xl p-6 transition-colors duration-500">
 			<p className="text-3xl font-extrabold my-4">404 Not Found</p>
 			<Link
 				href="/"

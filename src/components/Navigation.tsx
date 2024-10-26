@@ -59,7 +59,7 @@ export function DarkModeSwitcher() {
 	}, [theme, setTheme]);
 	return (
 		<button
-			className="text-2xl align-baseline w-12 h-12"
+			className="text-2xl align-baseline w-12 h-12 darkani"
 			onClick={handler}
 			title={`切换深色模式状态（当前：${getDarkModeAlt(theme)}）`}>
 			<FontAwesomeIcon icon={getDarkModeIcon(theme)} />
@@ -145,11 +145,11 @@ export default function Navigation({
 							}}>
 							<span className="block relative w-5 h-5" aria-hidden="true">
 								<span
-									className={`duration-200 block w-5 h-[0.225rem] bg-black dark:bg-gray-300/80 rounded-full burger-bar-1--s${menuStep} absolute left-1/2`}></span>
+									className={`burger-bar duration-200 block w-5 h-[0.225rem] bg-black dark:bg-gray-300/80 rounded-full burger-bar-1--s${menuStep} absolute left-1/2`}></span>
 								<span
-									className={`duration-200 block w-5 h-[0.225rem] bg-black dark:bg-gray-300/80 rounded-full burger-bar-2--s${menuStep} absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2`}></span>
+									className={`burger-bar duration-200 block w-5 h-[0.225rem] bg-black dark:bg-gray-300/80 rounded-full burger-bar-2--s${menuStep} absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2`}></span>
 								<span
-									className={`duration-200 block w-5 h-[0.225rem] bg-black dark:bg-gray-300/80 rounded-full burger-bar-3--s${menuStep} absolute left-1/2`}></span>
+									className={`burger-bar duration-200 block w-5 h-[0.225rem] bg-black dark:bg-gray-300/80 rounded-full burger-bar-3--s${menuStep} absolute left-1/2`}></span>
 							</span>
 						</button>
 					</div>

@@ -31,3 +31,14 @@
 	transform: translate(-50%, 50%) rotate(-45deg) scale(1.3);
 	height: 0.2rem;
 }
+
+.darkani,
+li > a,
+li > button {
+	@apply text-black dark:text-gray-300/80;
+	@apply transition-colors duration-500;
+}
+
+.prose * {
+	@apply transition-colors duration-500;
+}

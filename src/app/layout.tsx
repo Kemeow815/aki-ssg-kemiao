@@ -33,7 +33,7 @@ export default async function RootLayout({
 		});
 	return (
 		<html className="font-crf scroll-smooth" lang="zh-CN">
-			<body className="dark:bg-gray-950 dark:text-gray-300/80 text-black transition-colors duration-200">
+			<body className="dark:bg-gray-950 dark:text-gray-300/80 text-black transition-colors duration-500">
 				<Navigation links={links} />
 				<Header />
 				<main className="flex justify-center -mt-32 z-10 relative w-full gap-4">
