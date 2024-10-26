@@ -226,3 +226,7 @@ The friend links will be loaded from `src/data/friend-link.ts`
 The RSS Feed file will be saved in `/feed.xml`.
 The Sitemap file will be saved in `/sitemap.xml`.
 The `robots.txt` file will be saved in `/robots.txt`.
+
+## Special Thanks
+
+The design of this project is imitated from [tcdw/koi](https://github.com/tcdw/koi). Thanks for [@tcdw](https://github.com/tcdw)'s work!

@@ -224,3 +224,7 @@ Aki-SSG 支持[通用指令/插件语法](https://talk.commonmark.org/t/generic-
 RSS Feed 文件将保存在 `/feed.xml`。  
 Sitemap 文件将保存在 `/sitemap.xml`。  
 `robots.txt` 文件将保存在 `/robots.txt`。
+
+## 鸣谢
+
+本项目的样式设计模仿自 [tcdw/koi](https://github.com/tcdw/koi)。感谢 [@tcdw](https://github.com/tcdw)！
