@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import "@/styles/chillroundf.css";
 import "@/styles/globals.css";
 import { config } from "@/data/site-config";
 import Navigation from "@/components/Navigation";
