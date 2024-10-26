@@ -28,10 +28,13 @@ import { remarkBilibili } from "./markdown-extension/remark-bilibili";
 import BilibiliVideo from "@/components/ExtendedMarkdown/BilibiliVideo";
 import NeteaseMusic from "@/components/ExtendedMarkdown/NeteaseMusic";
 import { remarkNeteaseMusic } from "./markdown-extension/remark-netease-music";
+import { remarkFriendLinks } from "./markdown-extension/remark-friend-links";
+import FriendLinks from "@/components/ExtendedMarkdown/FriendLinks";
 
 const extended_components = {
 	bilibili: BilibiliVideo,
 	"netease-music": NeteaseMusic,
+	"friend-links": FriendLinks,
 };
 
 const pipeline = unified()
@@ -43,6 +46,7 @@ const pipeline = unified()
 	.use(remarkDirectiveRehype)
 	.use(remarkBilibili)
 	.use(remarkNeteaseMusic)
+	.use(remarkFriendLinks)
 	.use(remarkRehype, { allowDangerousHtml: true })
 	.use(rehypeSlug, {})
 	.use(rehypeHighlightCodeLines, {
