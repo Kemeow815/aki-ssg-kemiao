@@ -16,7 +16,7 @@ function rendToc(toc: List | ListItem, index: number = 0): ReactNode {
 	if (toc.children.length === 0) {
 		return [];
 	}
-	var ret: ReactNode[] = [];
+	const ret: ReactNode[] = [];
 	toc.children.forEach((item, ind) => {
 		if (item.type === "paragraph") {
 			ret.push(

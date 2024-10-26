@@ -2,7 +2,7 @@ export const connectString = (list: string[] | null) => {
 	if (list === null) {
 		return "";
 	}
-	var ret = "";
+	let ret = "";
 	list.forEach((val: string) => {
 		ret = ret.concat(` ${val}`);
 	});

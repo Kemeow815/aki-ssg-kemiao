@@ -76,7 +76,7 @@ export default function Navigation({
 	const [expanded, setExpanded] = useState(false);
 	const [navHeight, setNavHeight] = useState(5);
 	const [menuStep, setMenuStep] = useState<1 | 2 | 3>(1);
-	const [_, startTransistion] = useTransition();
+	const [, startTransistion] = useTransition();
 	const toggleExpand = useCallback(() => {
 		setExpanded(!expanded);
 		if (!expanded) {
@@ -100,7 +100,7 @@ export default function Navigation({
 				});
 			}, 200);
 		}
-	}, [setExpanded, setNavHeight, expanded]);
+	}, [setExpanded, setNavHeight, expanded, links]);
 	return (
 		<nav
 			className="fixed top-0 w-full z-20 justify-center flex bg-none"

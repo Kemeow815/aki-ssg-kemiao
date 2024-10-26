@@ -7,6 +7,7 @@ import { useCallback, useEffect } from "react";
 
 export function ScrollClient() {
 	const setScrollY = useSetAtom(scrollY);
+	/* eslint-disable-next-line react-hooks/exhaustive-deps */
 	const handler = useCallback(
 		throttle(() => {
 			setScrollY(

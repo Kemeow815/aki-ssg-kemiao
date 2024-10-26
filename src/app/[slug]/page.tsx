@@ -20,7 +20,7 @@ export async function generateStaticParams() {
 export default async function CustomPage({
 	params,
 }: {
-	params: { slug: string };
+	params: Promise<{ slug: string }>;
 }) {
 	const cms = await initCMS();
 	const page = cms.getPage((await params).slug);

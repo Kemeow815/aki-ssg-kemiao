@@ -1,5 +1,4 @@
 // import { Comments } from "@/components/Comments";
-import { Result } from "mdast-util-toc";
 import Copyright from "@/components/Copyright";
 import OutdateTip from "@/components/OutdateTip";
 import Toc from "@/components/Toc";
@@ -8,7 +7,7 @@ import { initCMS } from "@/libs/content-management";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-export var metadata: Metadata = {
+export let metadata: Metadata = {
 	title: `文章 - ${config.blog.title}`,
 	description: "没有描述",
 };
