@@ -74,7 +74,7 @@ export const config: SiteConfig = createConfig({
 			gravatar_mirror: "https://gravatar.com/avatar/", // Gravatar mirror to use.
 			cdn_prefix: "", // Optional, the cdn url prefix of your static assets. (Refers to assetPrefix config in next.config.ts)
 							// If not set, static assets will be imported locally.
-			thumb_query: "", // Optional, the query appended to the thumb image url refered in the posts and pages.
+			thumb_query: "", // Optional, the part appended to the thumb image url refered in the posts and pages.
 							// When the image is not fully loaded, the low resolution thumbnails will be displayed.
 							// If not set, none of thumb will be displayed.
 		}
