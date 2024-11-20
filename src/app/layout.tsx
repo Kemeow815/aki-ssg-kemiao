@@ -7,6 +7,7 @@ import CommonLogic from "@/components/LogicComponents/CommonLogic";
 import { initCMS } from "@/libs/content-management";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import GoToTop from "@/components/GoToTop";
 
 export const metadata: Metadata = {
 	title: config.blog.title,
@@ -49,6 +50,7 @@ export default async function RootLayout({
 				</main>
 				<Footer />
 				<CommonLogic />
+				<GoToTop />
 			</body>
 		</html>
 	);
