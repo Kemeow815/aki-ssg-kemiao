@@ -34,6 +34,13 @@ export default async function RootLayout({
 		});
 	return (
 		<html className="font-crf scroll-smooth" lang="zh-CN">
+			<head>
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `!function(){var t=localStorage.getItem("dark-mode"),a=document.documentElement.classList;("dark"===t||("auto"===t&&window.matchMedia("(prefers-color-scheme: dark)").matches))&&a.add("dark")}();`,
+					}}
+				/>
+			</head>
 			<body className="dark:bg-gray-950 dark:text-gray-300/80 text-black transition-colors duration-500">
 				<Navigation links={links} />
 				<Header />
