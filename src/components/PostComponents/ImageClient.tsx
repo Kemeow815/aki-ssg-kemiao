@@ -61,8 +61,11 @@ export const useImageFullyLoaded = (
 	return isFullyLoaded;
 };
 
-export default function ImageClient(props: JSX.IntrinsicElements["img"]) {
-	const { src, className, ref, decoding, width, height, alt, ...rest } = props; // eslint-disable-line @typescript-eslint/no-unused-vars
+export default function ImageClient(
+	props: JSX.IntrinsicElements["img"] & { inline?: boolean }
+) {
+	const { src, className, ref, decoding, width, height, alt, inline, ...rest } =
+		props; // eslint-disable-line @typescript-eslint/no-unused-vars
 	const rawImageElRef = useRef<HTMLImageElement>(null);
 	const previousSrcRef = useRef<string | undefined>(src);
 	const isLazy = useMemo(() => {
@@ -124,8 +127,9 @@ export default function ImageClient(props: JSX.IntrinsicElements["img"]) {
 			<img
 				{...rest}
 				className={connectString([
-					"border-box p-0 border-0 m-auto cursor-zoom-in bg-primary/60 block zoomable",
+					"border-box p-0 border-0 m-auto zoomable cursor-zoom-in",
 					className == null ? "" : className,
+					inline ? "inline-block" : "block",
 				])}
 				alt={alt}
 				ref={imageElRef}
@@ -154,8 +158,9 @@ export default function ImageClient(props: JSX.IntrinsicElements["img"]) {
 					aspectRatio: ratio,
 				}}
 				className={connectString([
-					"border-box p-0 border-0 m-auto block cursor-zoom-in zoomable bg-primary/60",
-					props.className == null ? "" : props.className,
+					"border-box p-0 border-0 m-auto zoomable cursor-zoom-in",
+					className == null ? "" : className,
+					inline ? "inline-block" : "block",
 				])}
 				alt={alt}
 				ref={imageElRef}
