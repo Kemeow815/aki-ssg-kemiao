@@ -14,6 +14,7 @@ import React, {
 	useEffect,
 	useCallback,
 	useState,
+	JSX,
 } from "react";
 
 const LOADED_IMAGE_URLS = new Set<string>();
@@ -100,13 +101,12 @@ export default function ImageClient(
 		return zoomRef.current;
 	}
 	const imageElRef: RefCallback<HTMLImageElement> = (node) => {
-		(rawImageElRef as React.MutableRefObject<HTMLImageElement | null>).current =
-			node;
+		(rawImageElRef as React.RefObject<HTMLImageElement | null>).current = node;
 		if (ref !== null && ref !== undefined && typeof ref !== "string") {
 			if (typeof ref === "function") {
 				ref(node);
 			} else if (ref !== null) {
-				(ref as React.MutableRefObject<HTMLImageElement | null>).current = node;
+				(ref as React.RefObject<HTMLImageElement | null>).current = node;
 			}
 		}
 		const zoom = getZoom();
@@ -122,6 +122,9 @@ export default function ImageClient(
 			? getThumbUrl(src!)
 			: SMALLEST_GIF;
 	const srcString = isVisible ? src : thumbSrcString;
+	const w = typeof width! === "number" ? width! : parseInt(width!);
+	const h = typeof height! === "number" ? height! : parseInt(height!);
+	const ratio = w / h;
 	if (!config.optimize.thumb_query) {
 		return (
 			<img
@@ -131,6 +134,8 @@ export default function ImageClient(
 					className == null ? "" : className,
 					inline ? "inline-block" : "block",
 				])}
+				width={w}
+				height={h}
 				alt={alt}
 				ref={imageElRef}
 				decoding="async"
@@ -138,23 +143,12 @@ export default function ImageClient(
 			/>
 		);
 	}
-	let ratio = 1.0;
-	if (typeof width! === "number") {
-		ratio = width!;
-	} else {
-		ratio = parseInt(width!);
-	}
-	if (typeof height! === "number") {
-		ratio /= height!;
-	} else {
-		ratio /= parseInt(height!);
-	}
 	return (
 		<span className="inline-block box-border relative max-w-full w-full h-auto my-auto mt-0 mb-1 text-[0]">
 			<img
 				{...rest}
 				style={{
-					width: width!,
+					width: w,
 					aspectRatio: ratio,
 				}}
 				className={connectString([
