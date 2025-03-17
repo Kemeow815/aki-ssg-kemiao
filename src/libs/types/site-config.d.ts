@@ -8,6 +8,7 @@ declare type BlogConfig = {
 	title: string;
 	description: string;
 	favicon: string;
+	begin_year: number;
 };
 
 declare type DisableCommentConfig = { type: "disable" };

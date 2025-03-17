@@ -5,7 +5,8 @@ export default async function Footer() {
 	return (
 		<footer className="bottom-0 relative items-center flex-col flex my-3 gap-3 justify-center w-full text-center py-4">
 			<p>
-				Copyright © 2024-{new Date().getFullYear()} {config.author.name}
+				Copyright © {config.blog.begin_year}-{new Date().getFullYear()}{" "}
+				{config.author.name}
 			</p>
 			<p className="opacity-70">
 				Powered by{" "}
