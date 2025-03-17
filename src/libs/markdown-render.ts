@@ -8,8 +8,12 @@ import type {
 import { toHtml } from "hast-util-to-html";
 import { toJsxRuntime } from "hast-util-to-jsx-runtime";
 import type { Root as MdashRoot } from "mdast";
-import { Result, toc } from "mdast-util-toc";
+import { toc } from "mdast-util-toc";
+import type { Result } from "mdast-util-toc";
 import { Fragment, jsx, jsxs } from "react/jsx-runtime";
+import { unified } from "unified";
+import { VFile } from "vfile";
+
 import rehypeMathjax from "rehype-mathjax";
 import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 import rehypeHighlight from "rehype-highlight";
@@ -22,18 +26,17 @@ import remarkGithubAlerts from "remark-github-alerts";
 import remarkMath from "remark-math";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
-import { unified } from "unified";
-import { VFile } from "vfile";
+
 import { remarkBilibili } from "./markdown-extension/remark-bilibili";
-import BilibiliVideo from "@/components/ExtendedMarkdown/BilibiliVideo";
-import NeteaseMusic from "@/components/ExtendedMarkdown/NeteaseMusic";
 import { remarkNeteaseMusic } from "./markdown-extension/remark-netease-music";
 import { remarkFriendLinks } from "./markdown-extension/remark-friend-links";
+import { remarkChat } from "./markdown-extension/remark-chat";
+import { remarkMeme } from "./markdown-extension/remark-meme";
+import BilibiliVideo from "@/components/ExtendedMarkdown/BilibiliVideo";
+import NeteaseMusic from "@/components/ExtendedMarkdown/NeteaseMusic";
 import FriendLinks from "@/components/ExtendedMarkdown/FriendLinks";
 import Image from "@/components/PostComponents/Image";
-import { remarkChat } from "./markdown-extension/remark-chat";
 import * as Chat from "@/components/ExtendedMarkdown/Chat";
-import { remarkMeme } from "./markdown-extension/remark-meme";
 import Meme from "@/components/ExtendedMarkdown/Meme";
 
 const extended_components = {

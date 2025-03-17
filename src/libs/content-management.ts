@@ -2,7 +2,7 @@ import { friend_link_list } from "@/data/friend-link";
 import { promises as fs } from "fs";
 import fm from "front-matter";
 import path from "path";
-import React from "react";
+import { cache } from "react";
 import { MarkdownContent } from "./markdown-render";
 
 class CMS {
@@ -162,7 +162,7 @@ class CMS {
 	}
 }
 
-export const initCMS = React.cache(async () => {
+export const initCMS = cache(async () => {
 	const ret = new CMS();
 	await ret.init();
 	return ret;

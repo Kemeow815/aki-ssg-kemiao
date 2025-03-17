@@ -3,7 +3,7 @@
 import type { Root, Text } from "mdast";
 import type { Plugin } from "unified";
 import { visit } from "unist-util-visit";
-import { LeafDirective } from "mdast-util-directive";
+import type { LeafDirective } from "mdast-util-directive";
 
 export const remarkChat: Plugin<[], Root> = () => (tree: Root, file: any) => {
 	visit(tree, (node: any) => {

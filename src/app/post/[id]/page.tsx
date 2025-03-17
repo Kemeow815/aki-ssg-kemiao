@@ -5,7 +5,7 @@ import OutdateTip from "@/components/OutdateTip";
 import Toc from "@/components/Toc";
 import { config } from "@/data/site-config";
 import { initCMS } from "@/libs/content-management";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import "@/styles/code-highlight.css";
 

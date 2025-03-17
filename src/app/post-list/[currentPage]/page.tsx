@@ -1,7 +1,7 @@
 import { config } from "@/data/site-config";
 import { initCMS } from "@/libs/content-management";
 import { connectString } from "@/utils/connectString";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 
 export async function generateStaticParams() {

@@ -6,24 +6,19 @@ import { config } from "@/data/site-config";
 import "@/styles/newwaline.css";
 import {
 	createContext,
-	DispatchWithoutAction,
 	ForwardedRef,
-	RefObject,
 	Suspense,
 	useCallback,
 	useContext,
-	useEffect,
 	useImperativeHandle,
-	useReducer,
 	useRef,
 	useState,
 } from "react";
 import { usePathname } from "next/navigation";
-import {
-	addComment,
+import { addComment, getComment } from "@waline/api";
+import type {
 	WalineRootComment,
 	WalineChildComment,
-	getComment,
 	WalineComment,
 } from "@waline/api";
 import { connectString } from "@/utils/connectString";
@@ -58,9 +53,6 @@ export function NewWalineCommentsDataProvider({
 	const [pid, setPid] = useState("");
 	const [rid, setRid] = useState("");
 	const [at, setAt] = useState("");
-	const [mutate, setMutate] = useState(() => {
-		return () => {};
-	});
 	return (
 		<pidContext.Provider value={pid}>
 			<ridContext.Provider value={rid}>

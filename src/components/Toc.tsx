@@ -1,7 +1,7 @@
 "use client";
 
-import { Link, List, ListItem, Text } from "mdast";
-import { ReactNode } from "react";
+import type { Link, List, ListItem, Text } from "mdast";
+import type { ReactNode } from "react";
 
 function rendToc(toc: List | ListItem, index: number = 0): ReactNode {
 	if (toc.type === "list") {
