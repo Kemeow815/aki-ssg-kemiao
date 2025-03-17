@@ -10,8 +10,8 @@ declare type BlogConfig = {
 	favicon: string;
 };
 
-declare type DisableCommentConfig = { enabled: false };
-declare type WalineCommentConfig = { enabled: true; waline_api: string };
+declare type DisableCommentConfig = { type: "disable" };
+declare type WalineCommentConfig = { type: "waline"; waline_api: string };
 
 declare type CommentConfig = DisableCommentConfig | WalineCommentConfig;
 

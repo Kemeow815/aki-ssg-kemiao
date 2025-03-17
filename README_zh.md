@@ -64,10 +64,10 @@ export const config: SiteConfig = createConfig({
 			},
 		},
 		comment: { // 评论配置
-			enabled: false, // 禁用评论功能
+			enabled: "disable", // 禁用评论功能
 		},
 		comment: { // 如下设置启用 Waline 评论
-			enabled: true,
+			enabled: "waline",
 			waline_api: ""
 		},
 		optimize: { // 优化配置

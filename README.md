@@ -64,10 +64,10 @@ export const config: SiteConfig = createConfig({
 			},
 		},
 		comment: { // Comment configuration.
-			enabled: false, // Disable comment.
+			enabled: "disable", // Disable comment.
 		},
 		comment: { // Or set it to enable waline comment.
-			enabled: true,
+			enabled: "waline",
 			waline_api: ""
 		},
 		optimize: { // Some optimization configuration.

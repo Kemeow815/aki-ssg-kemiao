@@ -18,7 +18,7 @@ export function createConfig(c: PartialSiteConfig): SiteConfig {
 			},
 		},
 		comment: {
-			enabled: false,
+			type: "disable",
 		},
 		optimize: {
 			gravatar_mirror: "https://gravatar.com/avatar/",

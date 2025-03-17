@@ -2,27 +2,23 @@
 import dynamic from "next/dynamic";
 import { Loading } from "./Loading";
 import { config } from "@/data/site-config";
+import React from "react";
 
-// export const Comments = dynamic(() => import("@/components/WalineComments"), {
-// 	ssr: false,
-// 	loading: () => {
-// 		return <CommentsLoading />;
-// 	},
-// });
-export const Comments = dynamic(
-	() => {
-		if (config.comment.enabled) {
-			return import("@/components/NewWalineComments");
-		}
-		return import("@/components/NoComments");
+const availableComments: Record<
+	SiteConfig["comment"]["type"],
+	() => Promise<React.FC>
+> = {
+	disable: async () => import("@/components/NoComments") as unknown as React.FC,
+	waline: async () =>
+		import("@/components/NewWalineComments") as unknown as React.FC,
+};
+
+export const Comments = dynamic(availableComments[config.comment.type], {
+	ssr: false,
+	loading: () => {
+		return <CommentsLoading />;
 	},
-	{
-		ssr: false,
-		loading: () => {
-			return <CommentsLoading />;
-		},
-	}
-);
+});
 
 export function CommentsLoading() {
 	return (
