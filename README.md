@@ -100,6 +100,7 @@ enable_comment: false
 allow_index: true
 navigation_title: "Page"
 navigation_index: 1
+draft: false
 ---
 
 The content to be displayed on the page should be written in markdown here.
@@ -115,6 +116,7 @@ And attributes in the front matter should be like:
 | allow_index(Optional)      | A boolean value, describes whether spiders be allowed to index this page in `robots.txt`. Default value is `false`.                          |
 | navigation_title(Optional) | Describes the link content direct to this page shown on the navigation bar. If is left blank, there will be no navigation link to this page. |
 | navigation_index(Optional) | An integer, describes the order in which it appears in the navigation bar(in ascending order). Default value is `0`.                         |
+| draft(Optional)            | A boolean value, describes whether this page is an draft. Drafts will be visiable only in `dev` preview. Default value is `false`.           |
 
 ### Articles
 
@@ -128,6 +130,7 @@ id: 1
 title: "Hello, World!"
 description: 这是一篇测试文章
 modified_at: "2024-10-04"
+draft: false
 ---
 
 The content of this article should be written in markdown here.
@@ -135,12 +138,13 @@ The content of this article should be written in markdown here.
 
 And attributes in the front matter should be like:
 
-| Attribute Name        | Description                                                                                               |
-| --------------------- | --------------------------------------------------------------------------------------------------------- |
-| id                    | A unique integer, be used to identify this article. The URL of this article would be `/posts/:id`         |
-| title                 | Describes the title of this article.                                                                      |
-| modified_at           | Describes the date and time of the last time this article be modified.                                    |
-| description(Optional) | Describes the abstract description of this article. If is left blank, "没有描述" will be used by default. |
+| Attribute Name        | Description                                                                                                                           |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| id                    | A unique integer, be used to identify this article. The URL of this article would be `/posts/:id`                                     |
+| title                 | Describes the title of this article.                                                                                                  |
+| modified_at           | Describes the date and time of the last time this article be modified.                                                                |
+| description(Optional) | Describes the abstract description of this article. If is left blank, "没有描述" will be used by default.                             |
+| draft(Optional)       | A boolean value, describes whether this article is an draft. Drafts will be visiable only in `dev` preview. Default value is `false`. |
 
 ## Friend Links
 

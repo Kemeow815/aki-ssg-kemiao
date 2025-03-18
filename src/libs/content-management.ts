@@ -4,6 +4,7 @@ import fm from "front-matter";
 import path from "path";
 import { cache } from "react";
 import { MarkdownContent } from "./markdown-render";
+import { isProd } from "./state-management";
 
 class CMS {
 	private friend_links: FriendLink[] = [];
@@ -56,6 +57,7 @@ class CMS {
 												? "1919-08-10T11:45:14Z"
 												: attr.modified_at
 										),
+										draft: attr.draft === undefined ? false : attr.draft,
 									};
 								});
 						})
@@ -64,6 +66,7 @@ class CMS {
 				.then((list) => {
 					this.posts = list
 						.filter((v) => v !== undefined)
+						.filter((v) => !isProd || !v.draft)
 						.sort((a, b) => {
 							return b.modified_at.getTime() - a.modified_at.getTime();
 						});
@@ -120,13 +123,16 @@ class CMS {
 														}
 														return id;
 												  })(attr.navigation_index),
+										draft: attr.draft === undefined ? false : attr.draft,
 									};
 								});
 						})
 					);
 				})
 				.then((list) => {
-					this.pages = list.filter((v) => v !== undefined);
+					this.pages = list
+						.filter((v) => v !== undefined)
+						.filter((v) => !isProd || !v.draft);
 				}),
 		]);
 	}

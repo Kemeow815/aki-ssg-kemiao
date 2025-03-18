@@ -9,12 +9,14 @@ declare type PageMetadata = {
 	allow_index: boolean;
 	navigation_title?: string;
 	navigation_index: number;
+	draft: boolean;
 };
 declare type Page = Content & PageMetadata;
 declare type PostMetadata = {
 	id: number;
 	description: string;
 	modified_at: Date;
+	draft: boolean;
 };
 declare type Post = PostMetadata & Content;
 declare interface RenderableContent {
