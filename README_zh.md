@@ -2,6 +2,8 @@
 
 > 又一个基于 Next.js 的静态站点生成器
 
+[English](README.md) | **简体中文**
+
 ## 简介
 
 Aki-SSG 是一个静态网站生成器，它将您的 Markdown 内容转换为基于 Next.js 的网站，使用 Tailwind CSS 作为 CSS 框架。
