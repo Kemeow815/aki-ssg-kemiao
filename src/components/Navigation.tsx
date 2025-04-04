@@ -177,6 +177,9 @@ export default function Navigation({
 					<li className="contents">
 						<Link
 							className="h-14 leading-[3.5rem] w-full text-center align-middle block text-xl"
+							onClick={() => {
+								toggleExpand();
+							}}
 							href="/">
 							首页
 						</Link>
@@ -186,6 +189,9 @@ export default function Navigation({
 							<li className="contents" key={ln.title}>
 								<Link
 									className="h-14 leading-[3.5rem] w-full text-center align-middle block text-xl"
+									onClick={() => {
+										toggleExpand();
+									}}
 									href={ln.url}>
 									{ln.title}
 								</Link>
