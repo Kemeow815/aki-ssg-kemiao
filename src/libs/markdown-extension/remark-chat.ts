@@ -16,18 +16,22 @@ export const remarkChat: Plugin<[], Root> = () => (tree: Root, file: any) => {
 		}
 		if (node.name === "chat") {
 			const data = node.data || (node.data = {});
-			if (node.type === "textDirective")
+			if (node.type === "textDirective") {
 				file.fail("Text directives for `chat` not supported", node);
-			if (node.type === "leafDirective")
+			}
+			if (node.type === "leafDirective") {
 				file.fail("Leaf directives for `chat` not supported", node);
+			}
 			data.hName = "chat";
 		} else if (node.name === "chat_item") {
 			const data = node.data || (node.data = {});
 			const attributes = node.attributes || {};
-			if (node.type === "textDirective")
+			if (node.type === "textDirective") {
 				file.fail("Text directives for `chat_item` not supported", node);
-			if (node.type === "containerDirective")
+			}
+			if (node.type === "containerDirective") {
 				file.fail("Container directives for `chat_item` not supported", node);
+			}
 			if (
 				(node as LeafDirective).children.length === 0 ||
 				(node as LeafDirective).children[0].type !== "text"
@@ -48,14 +52,17 @@ export const remarkChat: Plugin<[], Root> = () => (tree: Root, file: any) => {
 		} else if (node.name === "chat_sender") {
 			const data = node.data || (node.data = {});
 			const attributes = node.attributes || {};
-			if (node.type === "textDirective")
+			if (node.type === "textDirective") {
 				file.fail("Text directives for `chat_sender` not supported", node);
-			if (node.type === "containerDirective")
+			}
+			if (node.type === "containerDirective") {
 				file.fail("Container directives for `chat_sender` not supported", node);
+			}
 			const name = attributes.name;
-			if (!name)
+			if (!name) {
 				file.fail("Missing sender name", node)(data as any).hName =
 					"div" as string;
+			}
 			const avatar = attributes.avatar;
 			const self = attributes.self !== undefined;
 			data.hName = "chat-sender";
@@ -64,8 +71,6 @@ export const remarkChat: Plugin<[], Root> = () => (tree: Root, file: any) => {
 				sender_avatar: avatar,
 				align_right: self,
 			};
-		} else {
-			return;
 		}
 	});
 };

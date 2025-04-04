@@ -12,9 +12,7 @@ export default async function Copyright({
 	id: number;
 	cc?: string;
 }) {
-	if (cc === undefined) {
-		cc = "CC BY-NC-SA 4.0";
-	}
+	cc = cc ?? "CC BY-NC-SA 4.0";
 	return (
 		<div className="dark:bg-gray-600/30 bg-gray-300/30 -mx-6 mb-8 rounded-3xl p-6 relative overflow-hidden">
 			<p className="text-lg font-medium">{title}</p>

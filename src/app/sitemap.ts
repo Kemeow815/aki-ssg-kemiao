@@ -16,16 +16,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	});
 	const pageLinks = cms
 		.getPages()
+		.filter((p) => p.allow_index)
 		.map((p) => {
-			if (!p.allow_index) {
-				return undefined;
-			}
 			return {
 				url: `https://${config.blog.hostname}/${p.slug}`,
 				lastModified: new Date(),
 			};
-		})
-		.filter((v) => v !== undefined);
+		});
 	// 由于Next没有提供合适的Hook，所以在这里生成RSS
 	generateRssFeed();
 	return [

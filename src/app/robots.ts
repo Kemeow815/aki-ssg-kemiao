@@ -8,13 +8,10 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
 	const cms = await initCMS();
 	const pageLinks = cms
 		.getPages()
+		.filter((p) => p.allow_index)
 		.map((p) => {
-			if (!p.allow_index) {
-				return undefined;
-			}
 			return `/${p.slug}`;
-		})
-		.filter((v) => v !== undefined);
+		});
 	return {
 		rules: {
 			userAgent: "*",

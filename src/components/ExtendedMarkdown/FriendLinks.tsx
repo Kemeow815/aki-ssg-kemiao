@@ -7,12 +7,8 @@ import Link from "next/link";
 export default async function FriendLinks() {
 	const cms = await initCMS();
 	const linkList = cms.getFriendLinks().map((link, index) => {
-		if (link.avatar == undefined) {
-			link.avatar = getAvatar();
-		}
-		if (link.description == undefined) {
-			link.description = "";
-		}
+		link.avatar = link.avatar ?? getAvatar();
+		link.description = link.description ?? "";
 		return (
 			<Link
 				key={index}

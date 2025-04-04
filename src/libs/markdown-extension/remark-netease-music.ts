@@ -12,26 +12,32 @@ export const remarkNeteaseMusic: Plugin<[], Root> =
 				node.type === "leafDirective" ||
 				node.type === "containerDirective"
 			) {
-				if (node.name !== "netease_music") return;
-
-				const data = node.data || (node.data = {});
-				const attributes = node.attributes || {};
-				const id = attributes.id;
-
-				if (node.type === "textDirective")
-					file.fail("Text directives for `netease_music` not supported", node);
-				if (node.type === "containerDirective")
-					file.fail(
-						"Container directives for `netease_music` not supported",
-						node
-					);
-				if (!id)
-					file.fail("Missing music id", node)(data as any).hName =
-						"div" as string;
-				data.hName = "netease-music";
-				data.hProperties = {
-					id,
-				};
+				return;
 			}
+			if (node.name !== "netease_music") {
+				return;
+			}
+
+			const data = node.data || (node.data = {});
+			const attributes = node.attributes || {};
+			const id = attributes.id;
+
+			if (node.type === "textDirective") {
+				file.fail("Text directives for `netease_music` not supported", node);
+			}
+			if (node.type === "containerDirective") {
+				file.fail(
+					"Container directives for `netease_music` not supported",
+					node
+				);
+			}
+			if (!id) {
+				file.fail("Missing music id", node)(data as any).hName =
+					"div" as string;
+			}
+			data.hName = "netease-music";
+			data.hProperties = {
+				id,
+			};
 		});
 	};

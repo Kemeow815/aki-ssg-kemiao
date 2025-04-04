@@ -28,34 +28,36 @@ export const useImageFullyLoaded = (
 ) => {
 	const [isFullyLoaded, setIsFullyLoaded] = useState(false);
 	const handleLoad = useCallback(() => {
-		if (srcString) {
-			const img = imageElRef.current;
-			if (!img) return;
-			const imgSrc = img.currentSrc || img.src;
-			if (
-				imgSrc &&
-				(config.optimize.thumb_query
-					? !imgSrc.endsWith(config.optimize.thumb_query)
-					: imgSrc !== SMALLEST_GIF)
-			) {
-				const promise = "decode" in img ? img.decode() : Promise.resolve();
-				promise
-					.catch(() => {})
-					.then(() => {
-						if (!imageElRef.current) return;
-						LOADED_IMAGE_URLS.add(srcString);
-						setIsFullyLoaded(true);
-					});
-			}
+		if (!srcString) {
+			return;
+		}
+		const img = imageElRef.current;
+		if (!img) return;
+		const imgSrc = img.currentSrc || img.src;
+		if (
+			imgSrc &&
+			(config.optimize.thumb_query
+				? !imgSrc.endsWith(config.optimize.thumb_query)
+				: imgSrc !== SMALLEST_GIF)
+		) {
+			const promise = "decode" in img ? img.decode() : Promise.resolve();
+			promise
+				.catch(() => {})
+				.then(() => {
+					if (!imageElRef.current) return;
+					LOADED_IMAGE_URLS.add(srcString);
+					setIsFullyLoaded(true);
+				});
 		}
 	}, [imageElRef, srcString]);
 	useEffect(() => {
-		if (imageElRef.current) {
-			if (imageElRef.current.complete) {
-				handleLoad();
-			} else {
-				imageElRef.current.onload = handleLoad;
-			}
+		if (!imageElRef.current) {
+			return;
+		}
+		if (imageElRef.current.complete) {
+			handleLoad();
+		} else {
+			imageElRef.current.onload = handleLoad;
 		}
 	}, [handleLoad, imageElRef]);
 
