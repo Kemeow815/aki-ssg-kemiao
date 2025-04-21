@@ -1,10 +1,10 @@
 declare type Content = {
-	title: string;
 	original_content: string;
 	markdown_content: RenderableContent;
 };
 declare type PageMetadata = {
 	slug: string;
+	title: string;
 	enable_comment: boolean;
 	allow_index: boolean;
 	navigation_title?: string;
@@ -14,6 +14,7 @@ declare type PageMetadata = {
 declare type Page = Content & PageMetadata;
 declare type PostMetadata = {
 	id: number;
+	title: string;
 	description: string;
 	modified_at: Date;
 	draft: boolean;
