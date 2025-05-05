@@ -25,7 +25,7 @@ function rendToc(toc: List | ListItem, index: number = 0): ReactNode {
 							return (
 								<button
 									key={ind}
-									className="hover:opacity-80"
+									className="hover:opacity-80 text-left"
 									onClick={() => {
 										setTimeout(() => {
 											document
