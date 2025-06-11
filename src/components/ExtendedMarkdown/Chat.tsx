@@ -74,14 +74,14 @@ function Item(props: {
 				])}>
 				<div
 					className={connectString([
-						"opacity-60 text-black dark:text-gray-300",
+						"opacity-60 text-color",
 						sender.alignRight ? "text-right" : "text-left",
 					])}>
 					{sender.name}
 				</div>
 				<p
 					className={connectString([
-						"rounded-b-lg px-2 py-1 w-fit text-lg text-black dark:text-gray-300",
+						"rounded-b-lg px-2 py-1 w-fit text-lg text-color",
 						sender.alignRight
 							? "bg-primary/60 rounded-tl-lg text-right"
 							: "bg-gray-300/60 rounded-tr-lg text-left",

@@ -183,7 +183,7 @@ export function NewWalineCommentArea({
 	return (
 		<div
 			id="comment-area"
-			className="flex rounded-lg w-full bg-white dark:bg-gray-950 border-gray-950/10 dark:border-white/10 border-[1.5px] flex-wrap darkani">
+			className="flex rounded-lg w-full bg-color border-gray-950/10 dark:border-white/10 border-[1.5px] flex-wrap darkani">
 			<div className="px-1 flex overflow-hidden w-full border-b-2 border-gray-950/10 dark:border-white/10 border-dashed">
 				<div className="flex flex-1 items-center">
 					<label className="px-3 py-2 text-xs font-light align-baseline darkani">
@@ -357,7 +357,7 @@ export function NewWalineCommentCard({
 					</span>
 					<UpdateButton c={c} parent={parent} />
 				</div>
-				<div className="w-full comment prose prose-ay dark:prose-invert max-w-none text-sm leading-[1.75] break-all">
+				<div className="w-full comment ay-prose max-w-none text-sm leading-[1.75] break-all">
 					{toJsxRuntime(
 						fromHtml(c.comment, {
 							fragment: true,

@@ -26,6 +26,22 @@ li > button {
 	@apply transition-colors duration-500;
 }
 
+.bg-color {
+	@apply bg-white dark:bg-gray-950;
+}
+
+.text-color {
+	@apply text-black dark:text-gray-300/80;
+}
+
+.ay-prose {
+	@apply prose dark:prose-invert prose-ay break-all;
+}
+
+.bg-blur {
+	@apply bg-opacity-70 backdrop-blur-lg;
+}
+
 .loader {
 	--d: 22px;
 	@apply w-1 h-1 rounded-full text-primary;

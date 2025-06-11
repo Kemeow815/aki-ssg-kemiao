@@ -108,7 +108,7 @@ export default function Navigation({
 						: "rounded-[2.5rem] md:max-w-2xl md:w-auto w-2/3 top-4",
 					"transistion-all transform ease-in-out duration-500",
 					"fixed flex flex-col items-center h-nav md:h-20 overflow-y-hidden flex-shrink-0",
-					"bg-white/70 dark:bg-gray-950/70 backdrop-blur-3xl",
+					"bg-color bg-blur",
 				])}>
 				<div className="h-20 py-2 pl-2 pr-4 w-full flex justify-between items-center gap-8 flex-shrink-0">
 					<Link href="/">

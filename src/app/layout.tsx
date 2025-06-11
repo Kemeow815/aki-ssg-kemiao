@@ -42,7 +42,7 @@ export default async function RootLayout({
 					}}
 				/>
 			</head>
-			<body className="dark:bg-gray-950 dark:text-gray-300/80 text-black transition-colors duration-500">
+			<body className="bg-color text-color transition-colors duration-500">
 				<Navigation links={links} />
 				<Header />
 				<main className="flex justify-center -mt-32 z-10 relative w-full gap-4">

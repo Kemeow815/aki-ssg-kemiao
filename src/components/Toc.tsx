@@ -16,40 +16,35 @@ function rendToc(toc: List | ListItem, index: number = 0): ReactNode {
 	if (toc.children.length === 0) {
 		return [];
 	}
-	return (
-		<li key={index}>
-			{
-				toc.children
-					.map((item, ind) => {
-						if (item.type === "paragraph") {
-							return (
-								<button
-									key={ind}
-									className="hover:opacity-80 text-left"
-									onClick={() => {
-										setTimeout(() => {
-											document
-												.getElementById(
-													`user-content-${(
-														item.children[0] as Link
-													).url.substring(1)}`
-												)!
-												.scrollIntoView({ block: "center" });
-										}, 10);
-									}}>
-									{((item.children[0] as Link).children[0] as Text).value}
-								</button>
-							);
-						}
-						if (item.type !== "list") {
-							return undefined;
-						}
-						return rendToc(item, ind);
-					})
-					.filter((item) => item !== undefined) as ReactNode[]
+	const listItems = toc.children
+		.map((item, ind) => {
+			if (item.type === "paragraph") {
+				return (
+					<button
+						key={ind}
+						className="hover:opacity-80 text-left"
+						onClick={() => {
+							setTimeout(() => {
+								document
+									.getElementById(
+										`user-content-${(item.children[0] as Link).url.substring(
+											1
+										)}`
+									)!
+									.scrollIntoView({ block: "center" });
+							}, 10);
+						}}>
+						{((item.children[0] as Link).children[0] as Text).value}
+					</button>
+				);
 			}
-		</li>
-	);
+			if (item.type !== "list") {
+				return undefined;
+			}
+			return rendToc(item, ind);
+		})
+		.filter((item) => item !== undefined) as ReactNode[];
+	return <li key={index}>{listItems}</li>;
 }
 
 export default function Toc({ toc }: { toc: List }) {

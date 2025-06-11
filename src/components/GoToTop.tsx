@@ -11,7 +11,7 @@ export default function GoToTop() {
 		<button
 			title="Go to Top"
 			className={connectString([
-				"block z-30 fixed bottom-4 right-4 rounded-2xl border-2 border-opacity-60 bg-white dark:bg-gray-950 dark:text-gray-300/80 transition-all duration-500 items-center text-center p-4 shadow-3xl",
+				"block z-30 fixed bottom-4 right-4 rounded-2xl border-2 border-opacity-60 bg-color text-color transition-all duration-500 items-center text-center p-4 shadow-3xl",
 				scroll > 500 ? "opacity-100 hover:opacity-80" : "opacity-0 invisible",
 			])}
 			disabled={scroll <= 500}

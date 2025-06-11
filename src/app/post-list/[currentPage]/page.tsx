@@ -57,7 +57,7 @@ export default async function PostListPage({
 		);
 	});
 	return (
-		<div className="rounded-3xl bg-white/70 dark:bg-gray-950/70 backdrop-blur-lg backdrop-filter w-full max-w-4xl md:w-4xl p-6 min-h-48 transition-colors duration-500">
+		<div className="rounded-3xl bg-color bg-blur w-full max-w-4xl md:w-4xl p-6 min-h-48 transition-colors duration-500">
 			{postList}
 			<div
 				className={connectString([
