@@ -35,7 +35,7 @@ li > button {
 }
 
 .ay-prose {
-	@apply prose dark:prose-invert prose-ay break-all;
+	@apply prose dark:prose-invert prose-ay break-all max-w-4xl;
 }
 
 .bg-blur {
