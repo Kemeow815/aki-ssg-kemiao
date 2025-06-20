@@ -53,7 +53,10 @@ export default async function PostPage({
 			<div className="rounded-3xl bg-color bg-blur w-full max-w-4xl mx-auto md:w-4xl p-6 min-h-48 transition-colors duration-500">
 				<p className="text-3xl font-bold my-2 darkani">{post.title}</p>
 				<p className="opacity-60 my-2 darkani">
-					{post.modified_at.toLocaleDateString()}
+					{post.created_at.toLocaleDateString()}
+					{post.created_at.valueOf() - post.modified_at.valueOf() == 0
+						? ""
+						: ` (最后更新于 ${post.modified_at.toLocaleDateString()})`}
 				</p>
 				<OutdateTip created={post.modified_at.toDateString()} />
 				<div className="ay-prose max-w-4xl my-8">

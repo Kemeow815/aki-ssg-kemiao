@@ -39,7 +39,12 @@ const post_metadata_parser = defineMetadataParser<PostMetadata>(
 			id,
 			title,
 			description: attr.description ?? "暂无描述",
-			modified_at: new Date(attr.modified_at ?? "1919-08-10T11:45:14Z"),
+			created_at: new Date(
+				attr.created_at ?? attr.modified_at ?? "1919-08-10T11:45:14Z"
+			),
+			modified_at: new Date(
+				attr.modified_at ?? attr.created_at ?? "1919-08-10T11:45:14Z"
+			),
 			draft:
 				attr.draft === undefined || typeof attr.draft !== "boolean"
 					? false
@@ -135,7 +140,7 @@ class CMS {
 				this.posts = list
 					.filter((v) => !isProd || !v.draft)
 					.sort((a, b) => {
-						return b.modified_at.getTime() - a.modified_at.getTime();
+						return b.id - a.id;
 					});
 			});
 	}

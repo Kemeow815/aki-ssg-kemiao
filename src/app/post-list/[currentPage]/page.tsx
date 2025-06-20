@@ -50,7 +50,10 @@ export default async function PostListPage({
 					{post.title}
 				</Link>
 				<p className="opacity-60 my-4 darkani">
-					{post.modified_at.toLocaleDateString()}
+					{post.created_at.toLocaleDateString()}
+					{post.created_at.valueOf() - post.modified_at.valueOf() == 0
+						? ""
+						: ` (最后更新于 ${post.modified_at.toLocaleDateString()})`}
 				</p>
 				<p className="my-4 darkani">{post.description}</p>
 			</div>

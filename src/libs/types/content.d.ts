@@ -16,6 +16,7 @@ declare type PostMetadata = {
 	id: number;
 	title: string;
 	description: string;
+	created_at: Date;
 	modified_at: Date;
 	draft: boolean;
 };
