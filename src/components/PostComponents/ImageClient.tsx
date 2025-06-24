@@ -11,7 +11,6 @@ import React, {
 	useMemo,
 	useLayoutEffect,
 	RefCallback,
-	useEffect,
 	useCallback,
 	useState,
 	JSX,
@@ -21,48 +20,6 @@ const LOADED_IMAGE_URLS = new Set<string>();
 
 const SMALLEST_GIF =
 	"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
-
-export const useImageFullyLoaded = (
-	imageElRef: React.RefObject<HTMLImageElement>,
-	srcString?: string
-) => {
-	const [isFullyLoaded, setIsFullyLoaded] = useState(false);
-	const handleLoad = useCallback(() => {
-		if (!srcString) {
-			return;
-		}
-		const img = imageElRef.current;
-		if (!img) return;
-		const imgSrc = img.currentSrc || img.src;
-		if (
-			imgSrc &&
-			(config.optimize.thumb_query
-				? !imgSrc.endsWith(config.optimize.thumb_query)
-				: imgSrc !== SMALLEST_GIF)
-		) {
-			const promise = "decode" in img ? img.decode() : Promise.resolve();
-			promise
-				.catch(() => {})
-				.then(() => {
-					if (!imageElRef.current) return;
-					LOADED_IMAGE_URLS.add(srcString);
-					setIsFullyLoaded(true);
-				});
-		}
-	}, [imageElRef, srcString]);
-	useEffect(() => {
-		if (!imageElRef.current) {
-			return;
-		}
-		if (imageElRef.current.complete) {
-			handleLoad();
-		} else {
-			imageElRef.current.onload = handleLoad;
-		}
-	}, [handleLoad, imageElRef]);
-
-	return isFullyLoaded;
-};
 
 export default function ImageClient(
 	props: JSX.IntrinsicElements["img"] & { inline?: boolean }
@@ -95,14 +52,14 @@ export default function ImageClient(
 		setIntersection(rawImageElRef.current);
 	}, [resetIntersected, setIntersection, src]);
 	const zoomRef = useRef<Zoom | null>(null);
-	function getZoom() {
+	const getZoom = useCallback(() => {
 		if (zoomRef.current === null) {
 			zoomRef.current = mediumZoom({
 				background: "rgb(0, 0, 0, 0.3)",
 			});
 		}
 		return zoomRef.current;
-	}
+	}, []);
 	const imageElRef: RefCallback<HTMLImageElement> = (node) => {
 		(rawImageElRef as React.RefObject<HTMLImageElement | null>).current = node;
 		if (ref !== null && ref !== undefined && typeof ref !== "string") {
@@ -119,6 +76,30 @@ export default function ImageClient(
 			zoom.detach();
 		}
 	};
+	const [isFullyLoaded, setIsFullyLoaded] = useState(false);
+	const handleLoad = useCallback(() => {
+		if (!src) {
+			return;
+		}
+		const img = rawImageElRef.current;
+		if (!img) return;
+		const imgSrc = img.currentSrc || img.src;
+		if (
+			imgSrc &&
+			(config.optimize.thumb_query
+				? !imgSrc.endsWith(config.optimize.thumb_query)
+				: imgSrc !== SMALLEST_GIF)
+		) {
+			const promise = "decode" in img ? img.decode() : Promise.resolve();
+			promise
+				.catch(() => {})
+				.then(() => {
+					setIsFullyLoaded(true);
+					if (!rawImageElRef.current) return;
+					LOADED_IMAGE_URLS.add(src);
+				});
+		}
+	}, [rawImageElRef, src]);
 	const isVisible = !isLazy || isIntersected;
 	const thumbSrcString =
 		src && !(src.startsWith("data:") || src.startsWith("blob:"))
@@ -158,8 +139,10 @@ export default function ImageClient(
 					"border-box p-0 border-0 m-auto zoomable cursor-zoom-in",
 					className == null ? "" : className,
 					inline ? "inline-block" : "block",
+					isFullyLoaded ? "" : "thumb",
 				])}
 				alt={alt}
+				onLoad={handleLoad}
 				ref={imageElRef}
 				decoding="async"
 				src={srcString}
