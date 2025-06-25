@@ -1,7 +1,25 @@
 "use client";
 
-import type { Link, List, ListItem, Text } from "mdast";
+import { delay } from "@/utils/delay";
+import { scrollIntoViewById } from "@/utils/scrollIntoView";
+import type { Link, List, ListItem, Paragraph, Text } from "mdast";
 import type { ReactNode } from "react";
+
+function TocItem({ item }: { item: Paragraph }) {
+	return (
+		<button
+			className="hover:opacity-80 text-left"
+			onClick={() => {
+				delay(10).then(() => {
+					scrollIntoViewById(
+						`user-content-${(item.children[0] as Link).url.substring(1)}`
+					);
+				});
+			}}>
+			{((item.children[0] as Link).children[0] as Text).value}
+		</button>
+	);
+}
 
 function rendToc(toc: List | ListItem, index: number = 0): ReactNode {
 	if (toc.type === "list") {
@@ -19,24 +37,7 @@ function rendToc(toc: List | ListItem, index: number = 0): ReactNode {
 	const listItems = toc.children
 		.map((item, ind) => {
 			if (item.type === "paragraph") {
-				return (
-					<button
-						key={ind}
-						className="hover:opacity-80 text-left"
-						onClick={() => {
-							setTimeout(() => {
-								document
-									.getElementById(
-										`user-content-${(item.children[0] as Link).url.substring(
-											1
-										)}`
-									)!
-									.scrollIntoView({ block: "center" });
-							}, 10);
-						}}>
-						{((item.children[0] as Link).children[0] as Text).value}
-					</button>
-				);
+				return <TocItem item={item} key={ind} />;
 			}
 			if (item.type !== "list") {
 				return undefined;

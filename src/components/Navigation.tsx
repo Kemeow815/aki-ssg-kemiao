@@ -5,7 +5,14 @@ import Link from "next/link";
 import { connectString } from "@/utils/connectString";
 import { useAtom, useAtomValue } from "jotai";
 import { darkMode, scrollY } from "@/libs/state-management";
-import { startTransition, useCallback, useState, useTransition } from "react";
+import {
+	createContext,
+	startTransition,
+	useCallback,
+	useContext,
+	useState,
+	useTransition,
+} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faCircleHalfStroke,
@@ -36,7 +43,7 @@ function getDarkModeIcon(mode: "auto" | "light" | "dark") {
 	}
 }
 
-export function DarkModeSwitcher() {
+function DarkModeSwitcher() {
 	const [theme, setTheme] = useAtom(darkMode);
 	const handler = useCallback(() => {
 		startTransition(() => {
@@ -60,6 +67,24 @@ export function DarkModeSwitcher() {
 			title={`切换深色模式状态（当前：${getDarkModeAlt(theme)}）`}>
 			<FontAwesomeIcon icon={getDarkModeIcon(theme)} />
 		</button>
+	);
+}
+
+const toggleExpandContext = createContext<() => void>(() => {});
+
+function NavigationItem({ link }: { link: { title: string; url: string } }) {
+	const toggleExpand = useContext(toggleExpandContext);
+	return (
+		<li className="contents" key={link.title}>
+			<Link
+				className="h-14 leading-[3.5rem] w-full text-center align-middle block text-xl"
+				onClick={() => {
+					toggleExpand();
+				}}
+				href={link.url}>
+				{link.title}
+			</Link>
+		</li>
 	);
 }
 
@@ -174,29 +199,9 @@ export default function Navigation({
 						expanded ? "" : "hidden",
 						"flex flex-col justify-center w-full md:hidden mt-1",
 					])}>
-					<li className="contents">
-						<Link
-							className="h-14 leading-[3.5rem] w-full text-center align-middle block text-xl"
-							onClick={() => {
-								toggleExpand();
-							}}
-							href="/">
-							首页
-						</Link>
-					</li>
+					<NavigationItem link={{ title: "首页", url: "/" }} />
 					{links.map((ln) => {
-						return (
-							<li className="contents" key={ln.title}>
-								<Link
-									className="h-14 leading-[3.5rem] w-full text-center align-middle block text-xl"
-									onClick={() => {
-										toggleExpand();
-									}}
-									href={ln.url}>
-									{ln.title}
-								</Link>
-							</li>
-						);
+						return <NavigationItem link={ln} key={ln.title} />;
 					})}
 				</ul>
 			</div>

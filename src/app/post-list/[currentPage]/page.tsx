@@ -30,6 +30,25 @@ export async function generateMetadata({
 	};
 }
 
+function PostListItem({ post }: { post: Post }) {
+	return (
+		<div className="mb-8">
+			<Link
+				className="text-primary font-bold text-2xl my-4 hover:text-primary/80"
+				href={`/post/${post.id}`}>
+				{post.title}
+			</Link>
+			<p className="opacity-60 my-4 darkani">
+				{post.created_at.toLocaleDateString()}
+				{post.created_at.valueOf() - post.modified_at.valueOf() == 0
+					? ""
+					: ` (最后更新于 ${post.modified_at.toLocaleDateString()})`}
+			</p>
+			<p className="my-4 darkani">{post.description}</p>
+		</div>
+	);
+}
+
 export default async function PostListPage({
 	params,
 }: {
@@ -42,22 +61,7 @@ export default async function PostListPage({
 	const current_page = (await params).currentPage;
 	const posts = cms.getPostsByPage(current_page);
 	const postList = posts.map((post, index) => {
-		return (
-			<div key={index} className="mb-8">
-				<Link
-					className="text-primary font-bold text-2xl my-4 hover:text-primary/80"
-					href={`/post/${post.id}`}>
-					{post.title}
-				</Link>
-				<p className="opacity-60 my-4 darkani">
-					{post.created_at.toLocaleDateString()}
-					{post.created_at.valueOf() - post.modified_at.valueOf() == 0
-						? ""
-						: ` (最后更新于 ${post.modified_at.toLocaleDateString()})`}
-				</p>
-				<p className="my-4 darkani">{post.description}</p>
-			</div>
-		);
+		return <PostListItem post={post} key={index} />;
 	});
 	return (
 		<div className="rounded-3xl bg-color bg-blur w-full max-w-4xl md:w-4xl p-6 min-h-48 transition-colors duration-500">

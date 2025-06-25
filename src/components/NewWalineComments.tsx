@@ -32,6 +32,8 @@ import { fromHtml } from "hast-util-from-html";
 import { Fragment, jsx, jsxs } from "react/jsx-runtime";
 import useSWR from "swr";
 import { ErrorBoundary, FallbackProps } from "react-error-boundary";
+import { delay } from "@/utils/delay";
+import { scrollIntoViewById } from "@/utils/scrollIntoView";
 
 const api_option = {
 	serverURL: (config.comment as WalineCommentConfig).waline_api,
@@ -45,7 +47,7 @@ const setPidContext = createContext((v: string) => {});
 const setRidContext = createContext((v: string) => {});
 const setAtContext = createContext((v: string) => {});
 
-export function NewWalineCommentsDataProvider({
+function NewWalineCommentsDataProvider({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
@@ -79,7 +81,7 @@ export function NewWalineCommentsDataProvider({
 	);
 }
 
-export const NewWalineErrorHandler = (props: FallbackProps) => {
+const NewWalineErrorHandler = (props: FallbackProps) => {
 	console.log(props.error.message);
 	return <p className="text-lg font-bold text-red-500">加载评论内容失败。</p>;
 };
@@ -106,7 +108,7 @@ export default function NewWalineComments() {
 	);
 }
 
-export function NewWalineCommentArea({
+function NewWalineCommentArea({
 	updateFunction,
 }: {
 	updateFunction: () => void;
@@ -264,46 +266,38 @@ export function NewWalineCommentArea({
 	);
 }
 
-export function UpdateButton({
-	c,
-	parent,
-}: {
-	c: WalineComment;
-	parent?: string;
-}) {
+function UpdateButton({ c, parent }: { c: WalineComment; parent?: string }) {
 	const pid = useContext(pidContext);
 	const setPid = useContext(setPidContext);
 	const setRid = useContext(setRidContext);
 	const setAt = useContext(setAtContext);
+	const onClick = useCallback(() => {
+		if (pid !== c.objectId) {
+			setPid(c.objectId);
+			setRid(parent === undefined ? c.objectId : parent);
+			setAt(c.nick);
+			delay(10).then(() => {
+				scrollIntoViewById("comment-area");
+			});
+			return;
+		}
+		setPid("");
+		setRid("");
+		setAt("");
+	}, [pid, c.objectId, c.nick, setPid, setRid, setAt, parent]);
 	return (
 		<button
 			className={connectString([
 				"absolute top-0 right-2 opacity-80 hover:text-primary transition-colors duration-500",
 				pid === c.objectId ? "text-primary" : "tex-black dark:text-gray-300/80",
 			])}
-			onClick={() => {
-				if (pid !== c.objectId) {
-					setPid(c.objectId);
-					setRid(parent === undefined ? c.objectId : parent);
-					setAt(c.nick);
-					setTimeout(() => {
-						document.getElementById("comment-area")!.scrollIntoView({
-							block: "center",
-							behavior: "smooth",
-						});
-					}, 10);
-					return;
-				}
-				setPid("");
-				setRid("");
-				setAt("");
-			}}>
+			onClick={onClick}>
 			<FontAwesomeIcon icon={faCommentAlt} />
 		</button>
 	);
 }
 
-export function NewWalineCommentCard({
+function NewWalineCommentCard({
 	c,
 	parent,
 }: {
@@ -390,7 +384,7 @@ export function NewWalineCommentCard({
 	);
 }
 
-export function NewWalineCommentCards({
+function NewWalineCommentCards({
 	ref,
 }: {
 	ref: ForwardedRef<{ reload: () => void }>;

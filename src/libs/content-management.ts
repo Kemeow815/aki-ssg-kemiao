@@ -101,7 +101,7 @@ class CMS {
 	private posts: Post[] = [];
 	private pages: Page[] = [];
 
-	private async parse_markdown_file<MetadataType>(
+	private async parseMarkdownFile<MetadataType>(
 		path: string,
 		metadata_parser: MetadataParser<MetadataType>
 	): Promise<MetadataType & Content> {
@@ -119,23 +119,22 @@ class CMS {
 				};
 			});
 	}
-	private async process_all_file<T>(
+	private async processAllFile<T>(
 		files: string[],
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		metadata_parser: (attr: any) => T
+		metadata_parser: MetadataParser<T>
 	) {
 		return Promise.all(
 			files
 				.filter((filename) => filename.endsWith(".md"))
-				.map((filename) => this.parse_markdown_file(filename, metadata_parser))
+				.map((filename) => this.parseMarkdownFile(filename, metadata_parser))
 		);
 	}
-	private async init_posts() {
+	private async loadPosts() {
 		const posts_path = path.join(process.cwd(), "src", "data", "posts");
 		await fs
 			.readdir(posts_path)
 			.then((files) => files.map((file) => path.join(posts_path, file)))
-			.then((paths) => this.process_all_file(paths, post_metadata_parser))
+			.then((paths) => this.processAllFile(paths, post_metadata_parser))
 			.then((list) => {
 				this.posts = list
 					.filter((v) => !isProd || !v.draft)
@@ -144,19 +143,19 @@ class CMS {
 					});
 			});
 	}
-	private async init_pages() {
+	private async loadPages() {
 		const pages_path = path.join(process.cwd(), "src", "data", "pages");
 		await fs
 			.readdir(pages_path)
 			.then((files) => files.map((file) => path.join(pages_path, file)))
-			.then((paths) => this.process_all_file(paths, page_metadata_parser))
+			.then((paths) => this.processAllFile(paths, page_metadata_parser))
 			.then((list) => {
 				this.pages = list.filter((v) => !isProd || !v.draft);
 			});
 	}
 	async init() {
 		this.friend_links = friend_link_list;
-		await Promise.all([this.init_posts(), this.init_pages()]);
+		await Promise.all([this.loadPosts(), this.loadPages()]);
 	}
 	getFriendLinks() {
 		return this.friend_links;
