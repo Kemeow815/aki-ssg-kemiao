@@ -28,9 +28,9 @@ export default function ImageClient(
 	const { src, className, ref, decoding, width, height, alt, inline, ...rest } =
 		props;
 	const rawImageElRef = useRef<HTMLImageElement>(null);
-	const previousSrcRef = useRef<string | undefined>(src);
+	const previousSrcRef = useRef<string | Blob | undefined>(src);
 	const isLazy = useMemo(() => {
-		if (!src) return false;
+		if (!src || typeof src !== "string") return false;
 		if (src?.startsWith("data:") || src?.startsWith("blob:")) return false;
 		if (typeof window !== "undefined") {
 			if (LOADED_IMAGE_URLS.has(src)) return false;
@@ -78,7 +78,7 @@ export default function ImageClient(
 	};
 	const [isFullyLoaded, setIsFullyLoaded] = useState(false);
 	const handleLoad = useCallback(() => {
-		if (!src) {
+		if (!src || typeof src !== "string") {
 			return;
 		}
 		const img = rawImageElRef.current;
@@ -102,7 +102,9 @@ export default function ImageClient(
 	}, [rawImageElRef, src]);
 	const isVisible = !isLazy || isIntersected;
 	const thumbSrcString =
-		src && !(src.startsWith("data:") || src.startsWith("blob:"))
+		src &&
+		typeof src === "string" &&
+		!(src.startsWith("data:") || src.startsWith("blob:"))
 			? getThumbUrl(src!)
 			: SMALLEST_GIF;
 	const srcString = isVisible ? src : thumbSrcString;

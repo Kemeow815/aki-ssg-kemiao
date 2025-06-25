@@ -7,7 +7,12 @@ export default async function Image(
 ) {
 	const { src, inline, scale: ori_scale, ...rest } = props;
 	const scale = ori_scale ? ori_scale : 1.0;
-	if (!src || src.startsWith("data:") || src.startsWith("blob:")) {
+	if (
+		!src ||
+		typeof src != "string" ||
+		src.startsWith("data:") ||
+		src.startsWith("blob:")
+	) {
 		return <ImageClient {...props} />;
 	}
 	const result = await probe(src, {
