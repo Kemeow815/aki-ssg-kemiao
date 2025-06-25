@@ -186,8 +186,8 @@ export function NewWalineCommentArea({
 			className="flex rounded-lg w-full bg-color border-gray-950/10 dark:border-white/10 border-[1.5px] flex-wrap darkani">
 			<div className="px-1 flex overflow-hidden w-full border-b-2 border-gray-950/10 dark:border-white/10 border-dashed">
 				<div className="flex flex-1 items-center">
-					<label className="px-3 py-2 text-xs font-light align-baseline darkani">
-						昵称
+					<label className="px-2 md:px-3 py-2 text-xs font-light align-baseline darkani">
+						昵称*
 					</label>
 					<input
 						className="resize-none w-0 max-w-full p-2 flex-1 bg-transparent border-none outline-none align-baseline text-xs darkani"
@@ -199,8 +199,8 @@ export function NewWalineCommentArea({
 					/>
 				</div>
 				<div className="flex flex-1 items-center">
-					<label className="px-3 py-2 text-xs font-light align-baseline darkani">
-						邮箱
+					<label className="px-2 md:px-3 py-2 text-xs font-light align-baseline darkani">
+						邮箱*
 					</label>
 					<input
 						className="resize-none w-0 max-w-full p-2 flex-1 bg-transparent border-none outline-none align-baseline text-xs darkani"
@@ -212,8 +212,8 @@ export function NewWalineCommentArea({
 					/>
 				</div>
 				<div className="flex flex-1 items-center">
-					<label className="px-3 py-2 text-xs font-light align-baseline darkani">
-						网站（可选）
+					<label className="px-2 md:px-3 py-2 text-xs font-light align-baseline darkani">
+						网站
 					</label>
 					<input
 						className="resize-none w-0 max-w-full p-2 flex-1 bg-transparent border-none outline-none align-baseline text-xs darkani"
