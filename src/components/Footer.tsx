@@ -12,6 +12,7 @@ export default async function Footer() {
 				Powered by{" "}
 				<Link href="https://github.com/Allenyou1126/aki-ssg">Aki-SSG</Link>
 			</p>
+			<p className="opacity-70">Last Build: {new Date().toLocaleString()}</p>
 			<div className="opacity-70 flex flex-row flex-nowrap gap-8">
 				<Link className="block" href="/feed.xml">
 					RSS Feed
