@@ -10,7 +10,7 @@ const availableComments: Record<
 > = {
 	disable: async () => import("@/components/NoComments") as unknown as React.FC,
 	waline: async () =>
-		import("@/components/NewWalineComments") as unknown as React.FC,
+		import("@/components/WalineComments") as unknown as React.FC,
 };
 
 export const Comments = dynamic(availableComments[config.comment.type], {

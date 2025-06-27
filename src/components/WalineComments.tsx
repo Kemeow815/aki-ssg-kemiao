@@ -3,7 +3,7 @@
 "use client";
 
 import { config } from "@/data/site-config";
-import "@/styles/newwaline.css";
+import "@/styles/Waline.css";
 import {
 	createContext,
 	ForwardedRef,
@@ -47,7 +47,7 @@ const setPidContext = createContext((v: string) => {});
 const setRidContext = createContext((v: string) => {});
 const setAtContext = createContext((v: string) => {});
 
-function NewWalineCommentsDataProvider({
+function WalineCommentsDataProvider({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
@@ -81,38 +81,34 @@ function NewWalineCommentsDataProvider({
 	);
 }
 
-const NewWalineErrorHandler = (props: FallbackProps) => {
+const WalineErrorHandler = (props: FallbackProps) => {
 	console.log(props.error.message);
 	return <p className="text-lg font-bold text-red-500">加载评论内容失败。</p>;
 };
 
-export default function NewWalineComments() {
+export default function WalineComments() {
 	const cardsRef = useRef<{ reload: () => void }>(null);
 	return (
-		<NewWalineCommentsDataProvider>
+		<WalineCommentsDataProvider>
 			<div id="comment" className="text-start w-full">
-				<NewWalineCommentArea
+				<WalineCommentArea
 					updateFunction={() => {
 						cardsRef.current?.reload();
 					}}
 				/>
 				<div id="comment-content">
-					<ErrorBoundary fallbackRender={NewWalineErrorHandler}>
+					<ErrorBoundary fallbackRender={WalineErrorHandler}>
 						<Suspense fallback={<CommentsLoading />}>
-							<NewWalineCommentCards ref={cardsRef} />
+							<WalineCommentCards ref={cardsRef} />
 						</Suspense>
 					</ErrorBoundary>
 				</div>
 			</div>
-		</NewWalineCommentsDataProvider>
+		</WalineCommentsDataProvider>
 	);
 }
 
-function NewWalineCommentArea({
-	updateFunction,
-}: {
-	updateFunction: () => void;
-}) {
+function WalineCommentArea({ updateFunction }: { updateFunction: () => void }) {
 	const pathname = usePathname();
 	const rid = useContext(ridContext);
 	const pid = useContext(pidContext);
@@ -297,7 +293,7 @@ function UpdateButton({ c, parent }: { c: WalineComment; parent?: string }) {
 	);
 }
 
-function NewWalineCommentCard({
+function WalineCommentCard({
 	c,
 	parent,
 }: {
@@ -370,11 +366,7 @@ function NewWalineCommentCard({
 					<div>
 						{(c as WalineRootComment).children.map((v) => {
 							return (
-								<NewWalineCommentCard
-									c={v}
-									parent={c.objectId}
-									key={v.objectId}
-								/>
+								<WalineCommentCard c={v} parent={c.objectId} key={v.objectId} />
 							);
 						})}
 					</div>
@@ -384,7 +376,7 @@ function NewWalineCommentCard({
 	);
 }
 
-function NewWalineCommentCards({
+function WalineCommentCards({
 	ref,
 }: {
 	ref: ForwardedRef<{ reload: () => void }>;
@@ -428,7 +420,7 @@ function NewWalineCommentCards({
 			)}
 			<div id="comment-list">
 				{ret.data.map((c) => {
-					return <NewWalineCommentCard key={c.objectId} c={c} />;
+					return <WalineCommentCard key={c.objectId} c={c} />;
 				})}
 			</div>
 			<div
