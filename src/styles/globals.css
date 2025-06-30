@@ -49,28 +49,8 @@ body {
 		padding: 2rem;
 	}
 }
-
-/* MathJax Compatible */
-mjx-container > svg {
-	display: inline !important;
-}
-
-/* medium-zoom Compatible */
-.medium-zoom-overlay {
-	@apply z-40 bg-black/30;
-}
-.medium-zoom-image--opened {
-	@apply z-50;
-}
-
-.darkani,
-li > a,
-li > button {
+.darkani {
 	@apply text-black dark:text-gray-300/80;
-	@apply transition-colors duration-500;
-}
-
-.prose * {
 	@apply transition-colors duration-500;
 }
 
@@ -80,10 +60,6 @@ li > button {
 
 .text-color {
 	@apply text-black dark:text-gray-300/80;
-}
-
-.ay-prose {
-	@apply prose dark:prose-invert prose-ay break-all max-w-4xl;
 }
 
 .bg-blur {
@@ -106,8 +82,4 @@ li > button {
 	100% {
 		transform: rotate(1turn);
 	}
-}
-
-.thumb {
-	filter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='$'%3E%3CfeGaussianBlur stdDeviation='10'/%3E%3CfeColorMatrix type='matrix' values='1 0 0 0 0,0 1 0 0 0,0 0 1 0 0,0 0 0 9 0'/%3E%3CfeComposite in2='SourceGraphic' operator='in'/%3E%3C/filter%3E%3C/svg%3E#$");
 }
