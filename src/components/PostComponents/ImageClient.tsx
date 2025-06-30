@@ -5,6 +5,7 @@ import { connectString } from "@/utils/connectString";
 import { getThumbUrl } from "@/utils/getThumbUrl";
 import { useIntersection } from "@/utils/useIntersection";
 import mediumZoom, { Zoom } from "medium-zoom";
+import "@/styles/content.css";
 
 import React, {
 	useRef,
@@ -25,8 +26,7 @@ export default function ImageClient(
 	props: JSX.IntrinsicElements["img"] & { inline?: boolean }
 ) {
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const { src, className, ref, decoding, width, height, alt, inline, ...rest } =
-		props;
+	const { src, ref, decoding, width, height, alt, inline, ...rest } = props;
 	const rawImageElRef = useRef<HTMLImageElement>(null);
 	const previousSrcRef = useRef<string | Blob | undefined>(src);
 	const isLazy = useMemo(() => {
@@ -113,35 +113,38 @@ export default function ImageClient(
 	const ratio = w / h;
 	if (!config.optimize.thumb_query) {
 		return (
-			<img
-				{...rest}
-				className={connectString([
-					"border-box p-0 border-0 m-auto zoomable cursor-zoom-in",
-					className == null ? "" : className,
-					inline ? "inline-block" : "block",
-				])}
-				width={w}
-				height={h}
-				alt={alt}
-				ref={imageElRef}
-				decoding="async"
-				src={srcString}
-			/>
+			<span className="content-image-wrap">
+				<img
+					{...rest}
+					style={{
+						width: w,
+						aspectRatio: ratio,
+						display: inline ? "inline-block" : "block",
+					}}
+					className="content-image"
+					width={w}
+					height={h}
+					alt={alt}
+					ref={imageElRef}
+					decoding="async"
+					src={srcString}
+				/>
+				{alt && <span className="content-image-alt">{alt}</span>}
+			</span>
 		);
 	}
 	return (
-		<span className="inline-block box-border relative max-w-full w-full h-auto my-auto mt-0 mb-1 text-[0]">
+		<span className="content-image-wrap">
 			<img
 				{...rest}
 				style={{
 					width: w,
 					aspectRatio: ratio,
+					display: inline ? "inline-block" : "block",
 				}}
 				className={connectString([
-					"border-box p-0 border-0 m-auto zoomable cursor-zoom-in",
-					className == null ? "" : className,
-					inline ? "inline-block" : "block",
-					isFullyLoaded ? "" : "thumb",
+					"content-image ",
+					isFullyLoaded ? "" : "content-image-thumb",
 				])}
 				alt={alt}
 				onLoad={handleLoad}
@@ -149,11 +152,7 @@ export default function ImageClient(
 				decoding="async"
 				src={srcString}
 			/>
-			{alt && (
-				<span className="block text-lg opacity-80 text-center w-full my-2">
-					{alt}
-				</span>
-			)}
+			{alt && <span className="content-image-alt">{alt}</span>}
 		</span>
 	);
 }

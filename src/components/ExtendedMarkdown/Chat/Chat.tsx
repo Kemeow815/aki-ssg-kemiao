@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { connectString } from "@/utils/connectString";
 import { createContext, useContext } from "react";
+import "@/components/ExtendedMarkdown/Chat/style.css";
 
 type Sender = {
 	name: string;
@@ -51,41 +51,17 @@ function Item(props: {
 			  }
 			: senderManager.getSenderByName(props.sender_name)!;
 	return (
-		<div
-			className={connectString([
-				"flex gap-2 max-w-[90%]",
-				sender.alignRight ? "flex-row-reverse self-end" : "flex-row self-start",
-			])}>
+		<div className={`chat-item ${sender.alignRight ? "self" : ""}`}>
 			{sender.avatar === undefined ? (
-				<span className="bg-primary block text-white rounded-full w-12 h-12 text-center align-middle leading-[3rem] text-2xl flex-shrink-0">
-					{sender.name.charAt(0)}
-				</span>
+				<span className="chat-avatar default">{sender.name.charAt(0)}</span>
 			) : (
-				<img
-					className="rounded-full w-12 h-12 flex-shrink-0"
-					alt={sender.name}
-					src={sender.avatar!}
-				/>
+				<img className="chat-avatar" alt={sender.name} src={sender.avatar!} />
 			)}
-			<div
-				className={connectString([
-					"flex flex-col gap-0.5",
-					sender.alignRight ? "items-end" : "items-start",
-				])}>
-				<div
-					className={connectString([
-						"opacity-60 text-color",
-						sender.alignRight ? "text-right" : "text-left",
-					])}>
+			<div className={`chat-content ${sender.alignRight ? "self" : ""}`}>
+				<div className={`chat-sender ${sender.alignRight ? "self" : ""}`}>
 					{sender.name}
 				</div>
-				<p
-					className={connectString([
-						"rounded-b-lg px-2 py-1 w-fit text-lg text-color",
-						sender.alignRight
-							? "bg-primary/60 rounded-tl-lg text-right"
-							: "bg-gray-300/60 rounded-tr-lg text-left",
-					])}>
+				<p className={`chat-text ${sender.alignRight ? "self" : ""}`}>
 					{props.children}
 				</p>
 			</div>
@@ -114,9 +90,7 @@ function SenderItem(props: {
 function Container(props: { readonly children?: React.ReactNode }) {
 	return (
 		<sender_context.Provider value={new SenderManager(true)}>
-			<div className="flex flex-col gap-2 md:w-2/3 w-full mx-auto rounded-md bg-gray-300/50 dark:bg-gray-800/50 px-2 py-4 not-prose">
-				{props.children}
-			</div>
+			<div className="chat-container not-prose">{props.children}</div>
 		</sender_context.Provider>
 	);
 }

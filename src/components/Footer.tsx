@@ -1,23 +1,26 @@
 import { config } from "@/data/site-config";
 import Link from "next/link";
+import "@/styles/footer.css";
 
 export default async function Footer() {
 	return (
-		<footer className="bottom-0 relative items-center flex-col flex my-3 gap-3 justify-center w-full text-center py-4">
+		<footer>
 			<p>
 				Copyright © {config.blog.begin_year}-{new Date().getFullYear()}{" "}
 				{config.author.name}
 			</p>
-			<p className="opacity-70">
+			<p className="footer-secondary">
 				Powered by{" "}
 				<Link href="https://github.com/Allenyou1126/aki-ssg">Aki-SSG</Link>
 			</p>
-			<p className="opacity-70">Last Build: {new Date().toLocaleString()}</p>
-			<div className="opacity-70 flex flex-row flex-nowrap gap-8">
-				<Link className="block" href="/feed.xml">
+			<p className="footer-secondary">
+				Last Build: {new Date().toLocaleString()}
+			</p>
+			<div className="footer-secondary footer-link-wrap">
+				<Link className="footer-link" href="/feed.xml">
 					RSS Feed
 				</Link>
-				<Link className="block" href="/sitemap.xml">
+				<Link className="footer-link" href="/sitemap.xml">
 					Sitemap
 				</Link>
 			</div>

@@ -5,11 +5,12 @@ import { scrollIntoViewById } from "@/utils/scrollIntoView";
 import type { Link, List, ListItem, Paragraph, Text } from "mdast";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
+import "@/styles/toc.css";
 
 function TocItem({ item }: { item: Paragraph }) {
 	return (
 		<button
-			className="hover:opacity-80 text-left"
+			className="toc-item"
 			onClick={() => {
 				delay(10).then(() => {
 					scrollIntoViewById(
@@ -25,7 +26,7 @@ function TocItem({ item }: { item: Paragraph }) {
 function rendToc(toc: List | ListItem, index: number = 0): ReactNode {
 	if (toc.type === "list") {
 		return (
-			<ul key={index} className="pl-8 w-full opacity-90 font-medium">
+			<ul key={index} className="toc-list">
 				{toc.children.map((it, index) => {
 					return rendToc(it, index);
 				})}
@@ -62,11 +63,9 @@ export default function Toc({ toc }: { toc: List }) {
 	const tocContent: ReactNode = rendToc(toc);
 	return mounted ? (
 		createPortal(
-			<div className="hidden 2xl:block absolute left-4 h-full">
-				<div className="h-40"></div>
-				<div className="sticky top-28 w-80 overflow-y-auto text-wrap h-[85vh]">
-					{tocContent}
-				</div>
+			<div id="toc">
+				<div style={{ height: "10rem" }} />
+				<div id="toc-wrap">{tocContent}</div>
 			</div>,
 			ref.current!
 		)

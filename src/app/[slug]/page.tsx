@@ -4,6 +4,7 @@ import { initCMS } from "@/libs/content-management";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import "@/styles/code-highlight.css";
+import "@/styles/content.css";
 
 export async function generateStaticParams() {
 	const cms = await initCMS();
@@ -41,10 +42,8 @@ export default async function CustomPage({
 	}
 	return (
 		<>
-			<p className="text-3xl font-bold my-2 text-color darkani">{page.title}</p>
-			<div className="ay-prose max-w-4xl my-8">
-				{page.markdown_content.toReactNode()}
-			</div>
+			<p className="content-title">{page.title}</p>
+			<div className="content">{page.markdown_content.toReactNode()}</div>
 			{page.enable_comment && <Comments />}
 		</>
 	);
