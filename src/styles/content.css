@@ -1,0 +1,18 @@
+.content-title {
+	font-size: 1.875rem;
+	line-height: 2.25rem;
+	font-weight: 700;
+	margin: 0.5rem 0;
+}
+
+.content-metadata {
+	margin: 0.5rem 0;
+	opacity: 0.6;
+}
+
+.content {
+	@apply prose dark:prose-invert prose-ay;
+	word-break: break-all;
+	max-width: 56rem;
+	margin: 2rem auto;
+}
