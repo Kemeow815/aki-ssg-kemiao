@@ -3,7 +3,7 @@
 "use client";
 
 import { config } from "@/data/site-config";
-import "@/styles/Waline.css";
+import "@/styles/waline.css";
 import {
 	createContext,
 	ForwardedRef,
