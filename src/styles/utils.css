@@ -57,7 +57,7 @@
 }
 
 .page-switcher-wrap {
-	display: relative;
+	position: relative;
 	height: 3rem;
 	margin-top: 2rem;
 }
