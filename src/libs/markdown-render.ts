@@ -32,12 +32,12 @@ import { remarkNeteaseMusic } from "./markdown-extension/remark-netease-music";
 import { remarkFriendLinks } from "./markdown-extension/remark-friend-links";
 import { remarkChat } from "./markdown-extension/remark-chat";
 import { remarkMeme } from "./markdown-extension/remark-meme";
-import BilibiliVideo from "@/components/ExtendedMarkdown/BilibiliVideo";
-import NeteaseMusic from "@/components/ExtendedMarkdown/NeteaseMusic";
-import FriendLinks from "@/components/ExtendedMarkdown/FriendLinks";
+import BilibiliVideo from "@/components/ExtendedMarkdown/BilibiliVideo/BilibiliVideo";
+import NeteaseMusic from "@/components/ExtendedMarkdown/NeteaseMusic/NeteaseMusic";
+import FriendLinks from "@/components/ExtendedMarkdown/FriendLinks/FriendLinks";
 import Image from "@/components/PostComponents/Image";
-import * as Chat from "@/components/ExtendedMarkdown/Chat";
-import Meme from "@/components/ExtendedMarkdown/Meme";
+import * as Chat from "@/components/ExtendedMarkdown/Chat/Chat";
+import Meme from "@/components/ExtendedMarkdown/Meme/Meme";
 
 const extended_components = {
 	bilibili: BilibiliVideo,

@@ -1,5 +1,5 @@
 import { config } from "@/data/site-config";
-import Image from "../PostComponents/Image";
+import Image from "../../PostComponents/Image";
 
 export default async function Meme({
 	group,
