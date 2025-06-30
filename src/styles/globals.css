@@ -13,13 +13,17 @@ body {
 }
 
 :root {
-	--bg: rgba(255, 255, 255, 0.8);
-	--text: rgba(0, 0, 0, 1);
+	--bg: rgb(255 255 255 / 1);
+	--text: rgb(0 0 0 / 1);
+	--border: #e5e7eb;
+	--copyright-bg: rgb(209 213 219 / 0.3);
 }
 
 .dark {
-	--bg: rgba(3, 7, 18, 0.8);
-	--text: rgba(209, 213, 219, 1);
+	--bg: rgb(3 7 18 / 1);
+	--text: rgb(209 213 219 / 1);
+	--border: #e5e7eb;
+	--copyright-bg: rgb(75 85 99 / 0.3);
 }
 
 #main {
@@ -40,8 +44,8 @@ body {
 	margin: 0 auto;
 	padding: 1.5rem;
 	min-height: 12rem;
-	background-color: var(--bg);
-	backdrop-filter: blur(16px) 0.7;
+	background-color: rgb(from var(--bg) r g b / 0.8);
+	backdrop-filter: blur(16px);
 }
 
 @media (min-width: 768px) {
@@ -63,5 +67,5 @@ body {
 }
 
 .bg-blur {
-	backdrop-filter: blur(16px) 0.7;
+	backdrop-filter: blur(16px);
 }

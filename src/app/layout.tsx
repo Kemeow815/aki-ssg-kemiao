@@ -35,7 +35,13 @@ export default async function RootLayout({
 		});
 	return (
 		<html
-			style={{ "--primary": config.style.primary_color } as React.CSSProperties}
+			style={
+				{
+					"--primary": config.style.primary_color,
+					"--bg-img": `url(${config.style.header_image.default})`,
+					"--bg-img-dark": `url(${config.style.header_image.dark})`,
+				} as React.CSSProperties
+			}
 			lang="zh-CN">
 			<head>
 				<script
