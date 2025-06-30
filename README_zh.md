@@ -80,9 +80,13 @@ export const config: SiteConfig = createConfig({
 			thumb_query: "", // 可选，代表文章中引用图片的缩略图 URL 末尾的部分。
 							// 当文章中图片没有完全加载时，将显示缩略图代替。
 							// 如果该项没有配置，将不显示缩略图。
+		},
+		external_link: { // 向导航栏添加的外部链接
+			{
+				title: "Example", // 链接标题
+				url: "https://example.com" // 链接 URL
+			}
 		}
-
-		gravatar_mirror: "https://gravatar.com/avatar/",
 	};);
 ```
 
