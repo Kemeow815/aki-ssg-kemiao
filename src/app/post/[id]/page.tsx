@@ -8,7 +8,6 @@ import { initCMS } from "@/libs/content-management";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import "@/styles/code-highlight.css";
-import { createPortal } from "react-dom";
 
 export async function generateStaticParams() {
 	const cms = await initCMS();
@@ -64,10 +63,7 @@ export default async function PostPage({
 			</div>
 			<Copyright title={post.title} id={(await params).id} />
 			<Comments />
-			{createPortal(
-				<Toc toc={post.markdown_content.toToc().map} />,
-				document.getElementById("main")!
-			)}
+			<Toc toc={post.markdown_content.toToc().map} />
 		</>
 	);
 }
