@@ -20,6 +20,14 @@
 	}
 }
 
+.loader-wrap {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 4rem;
+	height: 4rem;
+}
+
 .page-switcher {
 	position: absolute;
 	transform: translateY(-50%);
