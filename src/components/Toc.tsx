@@ -3,7 +3,8 @@
 import { delay } from "@/utils/delay";
 import { scrollIntoViewById } from "@/utils/scrollIntoView";
 import type { Link, List, ListItem, Paragraph, Text } from "mdast";
-import type { ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 
 function TocItem({ item }: { item: Paragraph }) {
 	return (
@@ -49,16 +50,27 @@ function rendToc(toc: List | ListItem, index: number = 0): ReactNode {
 }
 
 export default function Toc({ toc }: { toc: List }) {
+	const [mounted, setMounted] = useState(false);
+	const ref = useRef<HTMLElement>(null);
+	useEffect(() => {
+		setMounted(true);
+		ref.current = document.getElementById("main");
+	}, []);
 	if (toc === undefined) {
 		return <></>;
 	}
 	const tocContent: ReactNode = rendToc(toc);
-	return (
-		<div className="hidden 2xl:block absolute left-4 h-full">
-			<div className="h-40"></div>
-			<div className="sticky top-28 w-80 overflow-y-auto text-wrap h-[85vh]">
-				{tocContent}
-			</div>
-		</div>
+	return mounted ? (
+		createPortal(
+			<div className="hidden 2xl:block absolute left-4 h-full">
+				<div className="h-40"></div>
+				<div className="sticky top-28 w-80 overflow-y-auto text-wrap h-[85vh]">
+					{tocContent}
+				</div>
+			</div>,
+			ref.current!
+		)
+	) : (
+		<></>
 	);
 }
