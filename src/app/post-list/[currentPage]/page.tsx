@@ -64,7 +64,7 @@ export default async function PostListPage({
 		return <PostListItem post={post} key={index} />;
 	});
 	return (
-		<div className="rounded-3xl bg-color bg-blur w-full max-w-4xl md:w-4xl p-6 min-h-48 transition-colors duration-500">
+		<>
 			{postList}
 			<div
 				className={connectString([
@@ -89,6 +89,6 @@ export default async function PostListPage({
 					下一页
 				</Link>
 			</div>
-		</div>
+		</>
 	);
 }

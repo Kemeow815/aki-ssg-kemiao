@@ -41,15 +41,11 @@ export default async function CustomPage({
 	}
 	return (
 		<>
-			<div className="rounded-3xl bg-color bg-blur w-full max-w-4xl mx-auto md:w-4xl p-6 min-h-48 transition-colors duration-500">
-				<p className="text-3xl font-bold my-2 text-color darkani">
-					{page.title}
-				</p>
-				<div className="ay-prose max-w-4xl my-8">
-					{page.markdown_content.toReactNode()}
-				</div>
-				{page.enable_comment && <Comments />}
+			<p className="text-3xl font-bold my-2 text-color darkani">{page.title}</p>
+			<div className="ay-prose max-w-4xl my-8">
+				{page.markdown_content.toReactNode()}
 			</div>
+			{page.enable_comment && <Comments />}
 		</>
 	);
 }

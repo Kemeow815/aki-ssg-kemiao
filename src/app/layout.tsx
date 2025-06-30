@@ -45,8 +45,12 @@ export default async function RootLayout({
 			<body className="bg-color text-color transition-colors duration-500">
 				<Navigation links={links} />
 				<Header />
-				<main className="flex justify-center -mt-32 z-10 relative w-full gap-4">
-					{children}
+				<main
+					id="main"
+					className="flex justify-center -mt-32 z-10 relative w-full gap-4">
+					<div className="rounded-3xl bg-color bg-blur w-full max-w-4xl mx-auto md:w-4xl p-6 min-h-48 transition-colors duration-500">
+						{children}
+					</div>
 				</main>
 				<Footer />
 				<CommonLogic />
