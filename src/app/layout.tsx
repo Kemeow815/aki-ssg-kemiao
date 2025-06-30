@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "@/styles/fonts/chillroundf.css";
 import "@/styles/globals.css";
+import "@/styles/normalize.css";
 import { config } from "@/data/site-config";
 import Navigation from "@/components/Navigation";
 import CommonLogic from "@/components/LogicComponents/CommonLogic";
@@ -32,7 +33,8 @@ export default async function RootLayout({
 				title: p.navigation_title!,
 				url: `/${p.slug}`,
 			};
-		});
+		})
+		.concat(config.extra_links);
 	return (
 		<html className="font-crf scroll-smooth" lang="zh-CN">
 			<head>

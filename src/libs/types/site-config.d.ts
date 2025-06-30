@@ -53,6 +53,7 @@ declare type SiteConfig = {
 	comment: CommentConfig;
 	follow?: FollowConfig;
 	optimize: OptimizeConfig;
+	extra_links: { title: string; url: string }[];
 };
 
 declare type PartialSiteConfig = {
@@ -62,4 +63,5 @@ declare type PartialSiteConfig = {
 	comment?: CommentConfig;
 	follow?: FollowConfig;
 	optimize?: Partial<OptimizeConfig>;
+	extra_links?: { title: string; url: string }[];
 };

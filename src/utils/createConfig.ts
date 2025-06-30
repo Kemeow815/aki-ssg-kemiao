@@ -30,6 +30,7 @@ export function createConfig(c: PartialSiteConfig): SiteConfig {
 			meme_base_url: c?.optimize?.meme_base_url,
 		},
 		follow: c?.follow,
+		extra_links: c?.extra_links ?? [],
 	};
 	if (c?.style?.header_image !== undefined) {
 		if (typeof c.style.header_image === "string") {
