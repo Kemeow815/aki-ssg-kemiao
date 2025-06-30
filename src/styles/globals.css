@@ -22,7 +22,7 @@ body {
 .dark {
 	--bg: rgb(3 7 18 / 1);
 	--text: rgb(209 213 219 / 1);
-	--border: #e5e7eb;
+	--border: #2d2d2d;
 	--copyright-bg: rgb(75 85 99 / 0.3);
 }
 

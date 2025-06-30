@@ -63,7 +63,7 @@
 
 .copyright-wrap {
 	background-color: var(--copyright-bg);
-	margin: 2rem -1.5rem 0;
+	margin: 2rem -1.5rem;
 	padding: 1.5rem;
 	border-radius: 1.5rem;
 	position: relative;

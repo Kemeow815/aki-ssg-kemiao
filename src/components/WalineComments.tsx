@@ -82,21 +82,21 @@ function WalineCommentsDataProvider({
 }
 
 const WalineErrorHandler = (props: FallbackProps) => {
-	console.log(props.error.message);
-	return <p className="text-lg font-bold text-red-500">加载评论内容失败。</p>;
+	console.error(props.error.message);
+	return <p id="comment-error">加载评论内容失败。</p>;
 };
 
 export default function WalineComments() {
 	const cardsRef = useRef<{ reload: () => void }>(null);
 	return (
 		<WalineCommentsDataProvider>
-			<div id="comment" className="text-start w-full">
+			<div id="comment">
 				<WalineCommentArea
 					updateFunction={() => {
 						cardsRef.current?.reload();
 					}}
 				/>
-				<div id="comment-content">
+				<div>
 					<ErrorBoundary fallbackRender={WalineErrorHandler}>
 						<Suspense fallback={<CommentsLoading />}>
 							<WalineCommentCards ref={cardsRef} />
@@ -179,16 +179,12 @@ function WalineCommentArea({ updateFunction }: { updateFunction: () => void }) {
 		updateFunction,
 	]);
 	return (
-		<div
-			id="comment-area"
-			className="flex rounded-lg w-full bg-color border-gray-950/10 dark:border-white/10 border-[1.5px] flex-wrap darkani">
-			<div className="px-1 flex overflow-hidden w-full border-b-2 border-gray-950/10 dark:border-white/10 border-dashed">
-				<div className="flex flex-1 items-center">
-					<label className="px-2 md:px-3 py-2 text-xs font-light align-baseline darkani">
-						昵称*
-					</label>
+		<div id="comment-area">
+			<div className="comment-area-metadata">
+				<div className="comment-area-metadata-item">
+					<label className="comment-area-metadata-label">昵称*</label>
 					<input
-						className="resize-none w-0 max-w-full p-2 flex-1 bg-transparent border-none outline-none align-baseline text-xs darkani"
+						className="comment-area-metadata-input"
 						onChange={(e) => {
 							setNick(e.target.value);
 						}}
@@ -196,12 +192,10 @@ function WalineCommentArea({ updateFunction }: { updateFunction: () => void }) {
 						type="text"
 					/>
 				</div>
-				<div className="flex flex-1 items-center">
-					<label className="px-2 md:px-3 py-2 text-xs font-light align-baseline darkani">
-						邮箱*
-					</label>
+				<div className="comment-area-metadata-item">
+					<label className="comment-area-metadata-label">邮箱*</label>
 					<input
-						className="resize-none w-0 max-w-full p-2 flex-1 bg-transparent border-none outline-none align-baseline text-xs darkani"
+						className="comment-area-metadata-input"
 						onChange={(e) => {
 							setMail(e.target.value);
 						}}
@@ -209,12 +203,10 @@ function WalineCommentArea({ updateFunction }: { updateFunction: () => void }) {
 						type="email"
 					/>
 				</div>
-				<div className="flex flex-1 items-center">
-					<label className="px-2 md:px-3 py-2 text-xs font-light align-baseline darkani">
-						网站
-					</label>
+				<div className="comment-area-metadata-item">
+					<label className="comment-area-metadata-label">网站</label>
 					<input
-						className="resize-none w-0 max-w-full p-2 flex-1 bg-transparent border-none outline-none align-baseline text-xs darkani"
+						className="comment-area-metadata-input"
 						onChange={(e) => {
 							setUrl(e.target.value);
 						}}
@@ -224,17 +216,18 @@ function WalineCommentArea({ updateFunction }: { updateFunction: () => void }) {
 				</div>
 			</div>
 			<textarea
-				className="w-full mx-2 my-3 outline-none bg-transparent resize-none h-28"
+				id="comment-area-input"
 				onChange={(e) => {
 					setContent(e.target.value);
 				}}
 				value={content}
 			/>
-			<div className="mx-3 my-2 flex overflow-hidden w-full items-center justify-between">
-				<div className="flex items-center gap-4">
+			<div id="comment-area-bar">
+				<div className="comment-area-bar-part">
 					{pid !== "" && (
 						<p
-							className="opacity-60 text-xs cursor-pointer darkani"
+							style={{ cursor: "pointer" }}
+							className="comment-area-bar-text"
 							title="点击取消回复"
 							onClick={() => {
 								setPid("");
@@ -245,13 +238,15 @@ function WalineCommentArea({ updateFunction }: { updateFunction: () => void }) {
 						</p>
 					)}
 				</div>
-				<div className="flex items-center gap-4">
-					<p className="opacity-60 text-xs">{content.length.toString()} 字</p>
+				<div className="comment-area-bar-part">
+					<p className="comment-area-bar-text">
+						{content.length.toString()} 字
+					</p>
 					<button
-						className={connectString([
-							"bg-primary hover:opacity-90 px-4 py-1 text-white text-sm rounded-xl",
-							submitAvailable ? "" : "filter brightness-75",
-						])}
+						style={{
+							filter: submitAvailable ? undefined : "brightness(0.75)",
+						}}
+						className="comment-area-bar-button"
 						disabled={!submitAvailable}
 						onClick={onSubmit}>
 						提交
@@ -283,10 +278,10 @@ function UpdateButton({ c, parent }: { c: WalineComment; parent?: string }) {
 	}, [pid, c.objectId, c.nick, setPid, setRid, setAt, parent]);
 	return (
 		<button
-			className={connectString([
-				"absolute top-0 right-2 opacity-80 hover:text-primary transition-colors duration-500",
-				pid === c.objectId ? "text-primary" : "tex-black dark:text-gray-300/80",
-			])}
+			style={{
+				color: pid === c.objectId ? "var(--primary)" : undefined,
+			}}
+			className="comment-update-button"
 			onClick={onClick}>
 			<FontAwesomeIcon icon={faCommentAlt} />
 		</button>
@@ -301,53 +296,42 @@ function WalineCommentCard({
 	parent?: string;
 }) {
 	return (
-		<div className="flex p-2 relative gap-3">
+		<div className="comment-card">
 			<div>
-				<img
-					className="rounded-full md:w-16 w-11 h-auto"
-					src={c.avatar}
-					alt="avatar"
-				/>
+				<img className="comment-avatar" src={c.avatar} alt="avatar" />
 			</div>
-			<div className="flex flex-1 pb-2 flex-col gap-1">
-				<div className="overflow-hidden relative w-full leading-[1.75]">
+			<div className="comment-data">
+				<div className="comment-metadata">
 					{c.link !== null &&
 					(c.link.startsWith("http://") || c.link.startsWith("https://")) ? (
 						<a
 							href={c.link}
-							className="inline-block text-sm font-bold text-primary">
+							style={{ color: "var(--primary)" }}
+							className="comment-nick">
 							{c.nick}
 						</a>
 					) : (
-						<p className="inline-block text-sm font-bold darkani">{c.nick}</p>
+						<p className="comment-nick">{c.nick}</p>
 					)}
 					{c.avatar === getAvatar(config.author.email) && (
-						<span className="inline-block rounded-md bg-primary/30 text-primary text-xs px-1 py-0.5 ml-2">
-							博主
-						</span>
+						<span className="comment-tag owner-tag">博主</span>
 					)}
-					<span className="inline-block text-xs ml-2 opacity-60 darkani">
+					<span className="comment-metadata-text">
 						{new Date(c.time).toLocaleDateString()}
 					</span>
-					<span className="inline-block text-xs ml-2 opacity-60 darkani">
-						#{c.objectId}
-					</span>
+					<span className="comment-metadata-text">#{c.objectId}</span>
 					{parent !== undefined && (
-						<span className="inline-block text-xs ml-2 opacity-60 darkani">
+						<span className="comment-metadata-text">
 							<FontAwesomeIcon icon={faReply} /> #
 							{(c as WalineChildComment).pid}
 						</span>
 					)}
 					<br />
-					<span className="inline-block rounded-md opacity-60 dark:bg-opacity-30 bg-opacity-50 bg-gray-300 text-xs px-1 py-0.5 mr-2 darkani">
-						{c.browser}
-					</span>
-					<span className="inline-block rounded-md opacity-60 dark:bg-opacity-30 bg-opacity-50 bg-gray-300 text-xs px-1 py-0.5 mr-2 darkani">
-						{c.os}
-					</span>
+					<span className="comment-tag">{c.browser}</span>
+					<span className="comment-tag">{c.os}</span>
 					<UpdateButton c={c} parent={parent} />
 				</div>
-				<div className="w-full comment ay-prose max-w-none text-sm leading-[1.75] break-all">
+				<div className="comment content">
 					{toJsxRuntime(
 						fromHtml(c.comment, {
 							fragment: true,
@@ -414,36 +398,38 @@ function WalineCommentCards({
 	return (
 		<>
 			{ret.count === 0 ? (
-				<p className="text-xl font-bold my-4 darkani">没有评论</p>
+				<p id="comment-count">没有评论</p>
 			) : (
-				<p className="text-xl font-bold my-4 darkani">{ret.count} 条评论</p>
+				<p id="comment-count">{ret.count} 条评论</p>
 			)}
-			<div id="comment-list">
+			<div>
 				{ret.data.map((c) => {
 					return <WalineCommentCard key={c.objectId} c={c} />;
 				})}
 			</div>
 			<div
-				className={connectString([
-					total <= 1 ? "hidden" : "",
-					" relative h-12 mt-8",
-				])}>
-				<p className="absolute top-2/4 -translate-y-2/4 left-0 right-0 m-auto text-center text-base darkani">{`第${page}页，共${total}页`}</p>
+				style={{
+					display: total <= 1 ? "none" : undefined,
+				}}
+				className="page-switcher-wrap">
+				<p className="page-switcher page-switcher-page">{`第${page}页，共${total}页`}</p>
 				<button
-					className={connectString([
-						page <= 1 ? "hidden" : "",
-						"absolute left-0 px-4 py-2 rounded-3xl bg-primary text-base top-2/4 -translate-y-2/4 font-bold text-white hover:opacity-90",
-					])}
+					style={{
+						left: 0,
+						display: page <= 1 ? "none" : undefined,
+					}}
+					className="page-switcher page-switcher-button"
 					onClick={() => {
 						setPage(page - 1);
 					}}>
 					上一页
 				</button>
 				<button
-					className={connectString([
-						page >= total ? "hidden" : "",
-						"absolute right-0 px-4 py-2 rounded-3xl bg-primary text-base top-2/4 -translate-y-2/4 font-bold text-white hover:opacity-90",
-					])}
+					style={{
+						right: 0,
+						display: page >= total ? "none" : undefined,
+					}}
+					className="page-switcher page-switcher-button"
 					onClick={() => {
 						setPage(page + 1);
 					}}>
