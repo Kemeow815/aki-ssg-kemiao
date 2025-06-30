@@ -1,19 +1,20 @@
 "use client";
 import { scrollY } from "@/libs/state-management";
-import { connectString } from "@/utils/connectString";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAtomValue } from "jotai";
+import "@/styles/utils.css";
 
 export default function GoToTop() {
 	const scroll = useAtomValue(scrollY);
 	return (
 		<button
 			title="Go to Top"
-			className={connectString([
-				"block z-30 fixed bottom-4 right-4 rounded-2xl border-2 border-opacity-60 bg-color text-color transition-all duration-500 items-center text-center p-4 shadow-3xl",
-				scroll > 500 ? "opacity-100 hover:opacity-80" : "opacity-0 invisible",
-			])}
+			style={{
+				opacity: scroll <= 500 ? 0 : undefined,
+				visibility: scroll <= 500 ? "hidden" : undefined,
+			}}
+			className="goto-top"
 			disabled={scroll <= 500}
 			onClick={() => {
 				window.scrollTo({
@@ -22,7 +23,7 @@ export default function GoToTop() {
 					behavior: "smooth",
 				});
 			}}>
-			<FontAwesomeIcon icon={faChevronUp} className="text-3xl" />
+			<FontAwesomeIcon icon={faChevronUp} />
 		</button>
 	);
 }

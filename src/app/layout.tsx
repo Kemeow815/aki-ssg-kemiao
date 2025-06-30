@@ -36,7 +36,15 @@ export default async function RootLayout({
 		})
 		.concat(config.extra_links);
 	return (
-		<html className="font-crf scroll-smooth" lang="zh-CN">
+		<html
+			style={
+				{
+					"--primary": config.style.primary_color,
+					"--bg-img": `url(${config.style.header_image.default})`,
+					"--bg-img-dark": `url(${config.style.header_image.dark})`,
+				} as React.CSSProperties
+			}
+			lang="zh-CN">
 			<head>
 				<script
 					dangerouslySetInnerHTML={{
@@ -44,15 +52,11 @@ export default async function RootLayout({
 					}}
 				/>
 			</head>
-			<body className="bg-color text-color transition-colors duration-500">
+			<body>
 				<Navigation links={links} />
 				<Header />
-				<main
-					id="main"
-					className="flex justify-center -mt-32 z-10 relative w-full gap-4">
-					<div className="rounded-3xl bg-color bg-blur w-full max-w-4xl mx-auto md:w-4xl p-6 min-h-48 transition-colors duration-500">
-						{children}
-					</div>
+				<main id="main">
+					<div id="page-container">{children}</div>
 				</main>
 				<Footer />
 				<CommonLogic />

@@ -1,5 +1,5 @@
 import { config } from "@/data/site-config";
-import Image from "../PostComponents/Image";
+import Image from "../../PostComponents/Image";
 
 export default async function Meme({
 	group,
@@ -10,7 +10,7 @@ export default async function Meme({
 }) {
 	if (config.optimize.meme_base_url === undefined) {
 		return (
-			<span className="inline-block text-red-500">
+			<span style={{ display: "inline-block", color: "rgb(239 68 68)" }}>
 				[Meme: {group}/{mid}]
 			</span>
 		);

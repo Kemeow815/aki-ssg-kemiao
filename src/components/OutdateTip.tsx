@@ -1,8 +1,8 @@
 "use client";
 
-import { connectString } from "@/utils/connectString";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "@/styles/utils.css";
 
 export default function OutdateTip({ created }: { created: string }) {
 	const created_at = new Date(created);
@@ -14,10 +14,8 @@ export default function OutdateTip({ created }: { created: string }) {
 	return (
 		<p
 			suppressHydrationWarning
-			className={connectString([
-				vis ? "block" : "hidden",
-				" align-baseline bg-primary/80 dark:bg-primary/50 rounded-2xl backdrop-blur-xl backdrop-filter p-4",
-			])}>
+			style={{ display: vis ? "block" : "none" }}
+			className="outdate-tip">
 			<FontAwesomeIcon icon={faInfoCircle} /> 本文最后修改于 {val}{" "}
 			天前，请注意文章内容的时效性。
 		</p>

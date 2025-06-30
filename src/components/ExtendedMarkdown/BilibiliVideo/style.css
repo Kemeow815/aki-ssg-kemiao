@@ -1,0 +1,7 @@
+.bilibili-video {
+	width: 100%;
+	max-width: 100%;
+	height: 500px;
+	border-width: 0;
+	overflow: hidden;
+}

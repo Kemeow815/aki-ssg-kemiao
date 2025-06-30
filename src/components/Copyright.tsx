@@ -2,6 +2,7 @@ import { config } from "@/data/site-config";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCreativeCommons } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
+import "@/styles/utils.css";
 
 export default async function Copyright({
 	title,
@@ -14,25 +15,22 @@ export default async function Copyright({
 }) {
 	cc = cc ?? "CC BY-NC-SA 4.0";
 	return (
-		<div className="dark:bg-gray-600/30 bg-gray-300/30 -mx-6 mb-8 rounded-3xl p-6 relative overflow-hidden">
-			<p className="text-lg font-medium">{title}</p>
+		<div className="copyright-wrap">
+			<p className="copyright-title">{title}</p>
 			<Link
-				className="text-primary underline dark:text-primary/80"
+				className="copyright-link"
 				href={`https://${config.blog.hostname}/post/${id}`}>{`https://${config.blog.hostname}/post/${id}`}</Link>
-			<div className="mt-4 flex-row flex-nowrap justify-start gap-4 flex">
+			<div className="copyright-grid">
 				<div>
-					<p className="font-bold row-span-1">本文作者</p>
-					<p className="row-span-2">{config.author.name}</p>
+					<p className="copyright-grid-title">本文作者</p>
+					<p className="copyright-grid-content">{config.author.name}</p>
 				</div>
 				<div>
-					<p className="font-bold row-span-1">授权协议</p>
-					<p className="row-span-2">{cc}</p>
+					<p className="copyright-grid-title">授权协议</p>
+					<p className="copyright-grid-content">{cc}</p>
 				</div>
 			</div>
-			<FontAwesomeIcon
-				className="text-[180px] absolute -top-8 -right-8 opacity-30"
-				icon={faCreativeCommons}
-			/>
+			<FontAwesomeIcon className="copyright-icon" icon={faCreativeCommons} />
 		</div>
 	);
 }

@@ -1,0 +1,28 @@
+#not-found-wrap {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+#not-found-text {
+	color: var(--text);
+	font-size: 1.875rem;
+	line-height: 2.25rem;
+	font-weight: 800;
+	margin: 1rem 0;
+}
+
+#not-found-button {
+	background-color: var(--primary);
+	color: lighten(var(--text), 10%);
+	border-radius: 1.5rem;
+	padding: 0.5rem 1rem;
+	cursor: pointer;
+	transition: opacity 0.3s ease;
+	margin: 1rem 0;
+}
+
+#not-found-button:hover {
+	opacity: 0.9;
+}

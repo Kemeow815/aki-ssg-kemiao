@@ -15,7 +15,7 @@ export default function BilibiliVideoClient({
 				cid == undefined ? "" : `&cid=${cid}`
 			}&page=1&high_quality=1&danmaku=0`}
 			allowFullScreen={true}
-			className="w-full h-[500px] max-w-full border-0 overflow-hidden"
+			className="bilibili-video"
 			sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"></iframe>
 	);
 }

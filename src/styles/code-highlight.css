@@ -3,18 +3,19 @@ Copyed from highlight.js/styles/night-owl.css
 */
 
 .hljs {
-	@apply block overflow-x-auto;
+	display: block;
+	overflow-x: auto;
 	color: #d6deeb;
 }
 
 /* General Purpose */
 .hljs-keyword {
 	color: #c792ea;
-	@apply italic;
+	font-style: italic;
 }
 .hljs-built_in {
 	color: #addb67;
-	@apply italic;
+	font-style: italic;
 }
 .hljs-type {
 	color: #82aaff;
@@ -45,7 +46,7 @@ Copyed from highlight.js/styles/night-owl.css
 }
 .hljs-title {
 	color: #dcdcaa;
-	@apply italic;
+	font-style: italic;
 }
 .hljs-params {
 	color: #7fdbca;
@@ -54,7 +55,7 @@ Copyed from highlight.js/styles/night-owl.css
 /* Meta */
 .hljs-comment {
 	color: #637777;
-	@apply italic;
+	font-style: italic;
 }
 .hljs-doctag {
 	color: #7fdbca;
@@ -97,11 +98,11 @@ Copyed from highlight.js/styles/night-owl.css
 }
 .hljs-emphasis {
 	color: #c792ea;
-	@apply italic;
+	font-style: italic;
 }
 .hljs-strong {
 	color: #addb67;
-	@apply font-bold;
+	font-weight: bold;
 }
 .hljs-formula {
 	color: #c792ea;
@@ -111,7 +112,7 @@ Copyed from highlight.js/styles/night-owl.css
 }
 .hljs-quote {
 	color: #697098;
-	@apply italic;
+	font-style: italic;
 }
 
 /* CSS */
@@ -125,13 +126,13 @@ Copyed from highlight.js/styles/night-owl.css
 
 .hljs-selector-class {
 	color: #addb67;
-	@apply italic;
+	font-style: italic;
 }
 
 .hljs-selector-attr,
 .hljs-selector-pseudo {
 	color: #c792ea;
-	@apply italic;
+	font-style: italic;
 }
 
 /* Templates */
@@ -145,10 +146,10 @@ Copyed from highlight.js/styles/night-owl.css
 /* diff */
 .hljs-addition {
 	color: #addb67ff;
-	@apply italic;
+	font-style: italic;
 }
 
 .hljs-deletion {
 	color: #ef535090;
-	@apply italic;
+	font-style: italic;
 }

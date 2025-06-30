@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import { Loading } from "./Loading";
 import { config } from "@/data/site-config";
 import React from "react";
+import "@/styles/comment.css";
 
 const availableComments: Record<
 	SiteConfig["comment"]["type"],
@@ -23,9 +24,9 @@ export const Comments = dynamic(availableComments[config.comment.type], {
 export function CommentsLoading() {
 	return (
 		<>
-			<div className="w-full flex justify-center items-center flex-col gap-4 mt-4">
+			<div id="comment-loading">
 				<Loading />
-				<p className="font-bold text-xl darkani">加载评论中……</p>
+				<p id="comment-loading-text">加载评论中……</p>
 			</div>
 		</>
 	);
