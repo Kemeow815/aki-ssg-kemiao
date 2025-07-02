@@ -81,12 +81,12 @@ export const config: SiteConfig = createConfig({
 							// 当文章中图片没有完全加载时，将显示缩略图代替。
 							// 如果该项没有配置，将不显示缩略图。
 		},
-		external_link: { // 向导航栏添加的外部链接
+		external_link: [ // 向导航栏添加的外部链接
 			{
 				title: "Example", // 链接标题
 				url: "https://example.com" // 链接 URL
 			}
-		}
+		]
 	};);
 ```
 

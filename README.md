@@ -81,12 +81,12 @@ export const config: SiteConfig = createConfig({
 							// When the image is not fully loaded, the low resolution thumbnails will be displayed.
 							// If not set, none of thumb will be displayed.
 		},
-		external_link: { // External links added to navigation bar
+		external_link: [ // External links added to navigation bar
 			{
 				title: "Example", // Title of external link
 				url: "https://example.com" // URL of external link
 			}
-		}
+		]
 	};);
 ```
 
