@@ -23,7 +23,7 @@
 
 .title {
 	font-weight: 600;
-	color: var(--color-primary);
+	color: var(--primary);
 	font-size: 1.25rem;
 	line-height: 1.75rem;
 }
