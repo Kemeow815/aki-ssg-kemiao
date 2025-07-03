@@ -2,12 +2,26 @@
 Copyed from highlight.js/styles/night-owl.css
 */
 
+@font-face {
+	font-family: "Cascadia Mono";
+	font-style: normal;
+	font-display: swap;
+	src: local("Cascadia Mono"),
+		url("/fonts/CascadiaMono/CascadiaMono.woff2") format("woff2");
+}
+@font-face {
+	font-family: "Cascadia Mono";
+	font-style: italic;
+	font-display: swap;
+	src: local("Cascadia Mono"),
+		url("/fonts/CascadiaMono/CascadiaMonoItalic.woff2") format("woff2");
+}
 .hljs {
 	display: block;
+	font-family: "Cascadia Mono", monospace;
 	overflow-x: auto;
 	color: #d6deeb;
 }
-
 /* General Purpose */
 .hljs-keyword {
 	color: #c792ea;
