@@ -11,11 +11,9 @@ Copyed from highlight.js/styles/night-owl.css
 /* General Purpose */
 .hljs-keyword {
 	color: #c792ea;
-	font-style: italic;
 }
 .hljs-built_in {
 	color: #addb67;
-	font-style: italic;
 }
 .hljs-type {
 	color: #82aaff;
@@ -126,13 +124,11 @@ Copyed from highlight.js/styles/night-owl.css
 
 .hljs-selector-class {
 	color: #addb67;
-	font-style: italic;
 }
 
 .hljs-selector-attr,
 .hljs-selector-pseudo {
 	color: #c792ea;
-	font-style: italic;
 }
 
 /* Templates */
@@ -146,10 +142,8 @@ Copyed from highlight.js/styles/night-owl.css
 /* diff */
 .hljs-addition {
 	color: #addb67ff;
-	font-style: italic;
 }
 
 .hljs-deletion {
 	color: #ef535090;
-	font-style: italic;
 }
