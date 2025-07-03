@@ -97,16 +97,16 @@ export default function Navigation({
 	const scroll = useAtomValue(scrollY);
 	const [expanded, setExpanded] = useState(false);
 	const [navHeight, setNavHeight] = useState(5);
-	const [navWidth, setNavWidth] = useState(5);
+	const [navWidth, setNavWidth] = useState(Math.max(10, 5 * links.length + 10));
 	const [menuStep, setMenuStep] = useState<1 | 2 | 3>(1);
 	const [, startTransistion] = useTransition();
 	useEffect(() => {
-		setNavWidth(Math.min(42, 5 * (links.length + 1) + 10));
+		setNavWidth(Math.max(10, 5 * links.length + 10));
 	}, [links]);
 	const toggleExpand = useCallback(() => {
 		setExpanded(!expanded);
 		if (!expanded) {
-			setNavHeight(5 + 3.5 * (links.length + 1) + 0.25);
+			setNavHeight(5 + 3.5 * links.length + 0.25);
 			startTransistion(() => {
 				setMenuStep(2);
 			});
@@ -152,9 +152,6 @@ export default function Navigation({
 							/>
 						</Link>
 						<ul className={style.pc}>
-							<li>
-								<Link href="/">首页</Link>
-							</li>
 							{links.map((ln) => {
 								return (
 									<li key={ln.title}>
@@ -206,7 +203,6 @@ export default function Navigation({
 					<ul
 						className={style.mobile}
 						style={{ display: expanded ? undefined : "none" }}>
-						<NavigationItem link={{ title: "首页", url: "/" }} />
 						{links.map((ln) => {
 							return <NavigationItem link={ln} key={ln.title} />;
 						})}

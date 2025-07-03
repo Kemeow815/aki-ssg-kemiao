@@ -34,6 +34,7 @@ export default async function RootLayout({
 				url: `/${p.slug}`,
 			};
 		})
+		.toSpliced(0, 0, { title: "首页", url: "/" })
 		.concat(config.extra_links);
 	return (
 		<html

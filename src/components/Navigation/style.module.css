@@ -158,7 +158,7 @@
 	}
 	.wrap {
 		height: 5rem;
-		width: var(--nav-width, 42rem);
+		width: var(--nav-width, 10rem);
 	}
 }
 
