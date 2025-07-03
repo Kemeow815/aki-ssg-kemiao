@@ -410,17 +410,14 @@ function WalineCommentCards({
 				style={{
 					display: total <= 1 ? "none" : undefined,
 				}}
-				className={pageSwitcher.pageSwitcherWrap}>
-				<p
-					className={
-						pageSwitcher.pageSwitcherPage
-					}>{`第${page}页，共${total}页`}</p>
+				className={pageSwitcher.wrap}>
+				<p className={pageSwitcher.page}>{`第${page}页，共${total}页`}</p>
 				<button
 					style={{
 						left: 0,
 						display: page <= 1 ? "none" : undefined,
 					}}
-					className={pageSwitcher.pageSwitcherButton}
+					className={pageSwitcher.button}
 					onClick={() => {
 						setPage(page - 1);
 					}}>
@@ -431,7 +428,7 @@ function WalineCommentCards({
 						right: 0,
 						display: page >= total ? "none" : undefined,
 					}}
-					className={pageSwitcher.pageSwitcherButton}
+					className={pageSwitcher.button}
 					onClick={() => {
 						setPage(page + 1);
 					}}>
