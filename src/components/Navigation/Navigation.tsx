@@ -6,6 +6,7 @@ import { useAtom, useAtomValue } from "jotai";
 import { darkMode, scrollY } from "@/libs/state-management";
 import {
 	createContext,
+	MouseEventHandler,
 	startTransition,
 	useCallback,
 	useContext,
@@ -21,6 +22,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { config } from "@/data/site-config";
 import style from "./style.module.css";
+import { flushSync } from "react-dom";
 
 function getDarkModeAlt(mode: "auto" | "light" | "dark") {
 	switch (mode) {
@@ -46,7 +48,7 @@ function getDarkModeIcon(mode: "auto" | "light" | "dark") {
 
 function DarkModeSwitcher() {
 	const [theme, setTheme] = useAtom(darkMode);
-	const handler = useCallback(() => {
+	const toggleDarkMode = useCallback(() => {
 		startTransition(() => {
 			switch (theme) {
 				case "auto":
@@ -61,6 +63,38 @@ function DarkModeSwitcher() {
 			}
 		});
 	}, [theme, setTheme]);
+	const handler: MouseEventHandler<HTMLButtonElement> = useCallback(
+		async (e) => {
+			if (!document.startViewTransition) {
+				toggleDarkMode();
+				return;
+			}
+			const x = e.clientX;
+			const y = e.clientY;
+			const radius = Math.hypot(
+				Math.max(x, window.innerWidth - x),
+				Math.max(y, window.innerHeight - y)
+			);
+			const vt = document.startViewTransition(() => {
+				flushSync(() => {
+					toggleDarkMode();
+				});
+			});
+			await vt.ready;
+			const frameConfig = {
+				clipPath: [
+					`circle(0 at ${x}px ${y}px)`,
+					`circle(${radius}px at ${x}px ${y}px)`,
+				],
+			};
+			const timingConfig = {
+				duration: 400,
+				pseudoElement: "::view-transition-new(root)",
+			};
+			document.documentElement.animate(frameConfig, timingConfig);
+		},
+		[toggleDarkMode]
+	);
 	return (
 		<button
 			className={style.switcher}
