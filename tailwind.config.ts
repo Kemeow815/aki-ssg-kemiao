@@ -27,6 +27,7 @@ const config: Config = {
 			typography: ({ theme }: any) => ({
 				ay: {
 					css: {
+						"--tw-prose-pre-bg": "#282c34",
 						"--tw-prose-links": theme("colors.primary"),
 						"--tw-prose-invert-body": theme("colors.gray[200] / 80%"),
 						"--tw-prose-invert-headings": theme("colors.gray[300] / 80%"),
@@ -41,7 +42,7 @@ const config: Config = {
 						"--tw-prose-invert-captions": theme("colors.gray[400] / 80%"),
 						"--tw-prose-invert-code": theme("colors.gray[300] / 80%"),
 						"--tw-prose-invert-pre-code": theme("colors.gray[300] / 80%"),
-						"--tw-prose-invert-pre-bg": "rgb(0 0 0)",
+						"--tw-prose-invert-pre-bg": "#282c34",
 						"--tw-prose-invert-th-borders": theme("colors.gray[300] / 80%"),
 						"--tw-prose-invert-td-borders": theme("colors.gray[300] / 80%"),
 					},
