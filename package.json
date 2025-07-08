@@ -102,6 +102,9 @@
 			"string.prototype.trimend": "npm:@nolyfill/string.prototype.trimend@^1",
 			"safe-buffer": "npm:@nolyfill/safe-buffer@^1"
 		},
+		"browserslist": [
+			"fully supports es6-module and fully supports view-transitions"
+		],
 		"onlyBuiltDependencies": [
 			"sharp",
 			"unrs-resolver"
