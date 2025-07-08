@@ -22,7 +22,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { config } from "@/data/site-config";
 import style from "./style.module.css";
-import { flushSync } from "react-dom";
+import { darkModeAnimation } from "@/utils/darkModeAnimation";
 
 function getDarkModeAlt(mode: "auto" | "light" | "dark") {
 	switch (mode) {
@@ -65,33 +65,9 @@ function DarkModeSwitcher() {
 	}, [theme, setTheme]);
 	const handler: MouseEventHandler<HTMLButtonElement> = useCallback(
 		async (e) => {
-			if (!document.startViewTransition) {
+			await darkModeAnimation(e.clientX, e.clientY, () => {
 				toggleDarkMode();
-				return;
-			}
-			const x = e.clientX;
-			const y = e.clientY;
-			const radius = Math.hypot(
-				Math.max(x, window.innerWidth - x),
-				Math.max(y, window.innerHeight - y)
-			);
-			const vt = document.startViewTransition(() => {
-				flushSync(() => {
-					toggleDarkMode();
-				});
 			});
-			await vt.ready;
-			const frameConfig = {
-				clipPath: [
-					`circle(0 at ${x}px ${y}px)`,
-					`circle(${radius}px at ${x}px ${y}px)`,
-				],
-			};
-			const timingConfig = {
-				duration: 400,
-				pseudoElement: "::view-transition-new(root)",
-			};
-			document.documentElement.animate(frameConfig, timingConfig);
 		},
 		[toggleDarkMode]
 	);

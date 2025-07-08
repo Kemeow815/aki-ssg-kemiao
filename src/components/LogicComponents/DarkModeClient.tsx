@@ -1,33 +1,58 @@
 "use client";
 
-import { darkMode } from "@/libs/state-management";
-import { useAtomValue } from "jotai/react";
-import { useEffect } from "react";
+import { darkMode, isDarkMode } from "@/libs/state-management";
+import { darkModeAnimation } from "@/utils/darkModeAnimation";
+import { useAtom, useAtomValue } from "jotai/react";
+import { useCallback, useEffect } from "react";
 
 export function DarkModeClient() {
 	const theme = useAtomValue(darkMode);
+	const [dark, setDark] = useAtom(isDarkMode);
 	useEffect(() => {
-		if (theme == "dark") {
+		if (dark) {
 			document.getElementsByTagName("html").item(0)?.classList.add("dark");
-			return;
-		}
-		if (theme == "light") {
+		} else {
 			document.getElementsByTagName("html").item(0)?.classList.remove("dark");
-			return;
+		}
+	}, [dark]);
+	const autoHandler = useCallback(
+		(media: MediaQueryList) => {
+			if (theme !== "auto") {
+				return;
+			}
+			if (media.matches) {
+				setDark(true);
+			} else {
+				setDark(false);
+			}
+		},
+		[setDark, theme]
+	);
+	useEffect(() => {
+		if (theme === "dark") {
+			setDark(true);
+			return () => {};
+		}
+		if (theme === "light") {
+			setDark(false);
+			return () => {};
 		}
 		const media = window.matchMedia("(prefers-color-scheme: dark)");
-		const callback = () => {
-			if (media.matches) {
-				document.getElementsByTagName("html").item(0)?.classList.add("dark");
-			} else {
-				document.getElementsByTagName("html").item(0)?.classList.remove("dark");
-			}
+		autoHandler(media);
+		const callback = async () => {
+			await darkModeAnimation(
+				window.innerWidth / 2,
+				window.innerHeight / 2,
+				() => {
+					autoHandler(media);
+				}
+			);
 		};
-		callback();
 		media.addEventListener("change", callback, true);
 		return () => {
-			media.removeEventListener("change", callback);
+			media.removeEventListener("change", callback, true);
+			console.log("Event listener removed");
 		};
-	}, [theme]);
+	}, [autoHandler, setDark, theme]);
 	return <></>;
 }

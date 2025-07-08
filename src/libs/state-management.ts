@@ -8,4 +8,6 @@ export const darkMode = atomWithStorage<"auto" | "light" | "dark">(
 	"auto"
 );
 
+export const isDarkMode = atom(false);
+
 export const scrollY = atom(0);
