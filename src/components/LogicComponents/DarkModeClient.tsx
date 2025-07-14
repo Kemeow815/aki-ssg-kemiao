@@ -51,7 +51,6 @@ export function DarkModeClient() {
 		media.addEventListener("change", callback, true);
 		return () => {
 			media.removeEventListener("change", callback, true);
-			console.log("Event listener removed");
 		};
 	}, [autoHandler, setDark, theme]);
 	return <></>;

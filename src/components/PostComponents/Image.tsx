@@ -6,7 +6,7 @@ export default async function Image(
 	props: JSX.IntrinsicElements["img"] & { inline?: boolean; scale?: number }
 ) {
 	const { src, inline, scale: ori_scale, ...rest } = props;
-	const scale = ori_scale ? ori_scale : 1.0;
+	const scale = ori_scale ?? 1.0;
 	if (
 		!src ||
 		typeof src != "string" ||

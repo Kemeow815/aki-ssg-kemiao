@@ -37,7 +37,8 @@
 }
 
 .icon {
-	font-size: 180px;
+	width: 180px;
+	height: 180px;
 	position: absolute;
 	opacity: 0.3;
 	top: -2rem;

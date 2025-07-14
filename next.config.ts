@@ -9,11 +9,6 @@ const nextConfig: NextConfig = {
 	experimental: {
 		reactCompiler: true,
 		optimizeCss: true,
-		optimizePackageImports: [
-			"@fortawesome/free-brands-svg-icons",
-			"@fortawesome/free-solid-svg-icons",
-			"@fortawesome/free-regular-svg-icons",
-		],
 	},
 };
 
