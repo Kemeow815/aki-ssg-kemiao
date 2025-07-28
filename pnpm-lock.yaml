@@ -28,6 +28,11 @@ overrides:
   string.prototype.trimend: npm:@nolyfill/string.prototype.trimend@^1
   safe-buffer: npm:@nolyfill/safe-buffer@^1
 
+patchedDependencies:
+  medium-zoom:
+    hash: 6a646e3c26a1ae7e165f6088d961e6225fadfb8b4d537b5d2a36c50759049b83
+    path: patches/medium-zoom.patch
+
 importers:
 
   .:
@@ -85,7 +90,7 @@ importers:
         version: 7.1.0
       medium-zoom:
         specifier: ^1.1.0
-        version: 1.1.0
+        version: 1.1.0(patch_hash=6a646e3c26a1ae7e165f6088d961e6225fadfb8b4d537b5d2a36c50759049b83)
       next:
         specifier: 15.4.1
         version: 15.4.1(babel-plugin-react-compiler@19.0.0-beta-8a03594-20241020)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -4379,7 +4384,7 @@ snapshots:
 
   mdn-data@2.0.30: {}
 
-  medium-zoom@1.1.0: {}
+  medium-zoom@1.1.0(patch_hash=6a646e3c26a1ae7e165f6088d961e6225fadfb8b4d537b5d2a36c50759049b83): {}
 
   merge2@1.4.1: {}
 

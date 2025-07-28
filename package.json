@@ -102,6 +102,9 @@
 		"onlyBuiltDependencies": [
 			"sharp",
 			"unrs-resolver"
-		]
+		],
+		"patchedDependencies": {
+			"medium-zoom": "patches/medium-zoom.patch"
+		}
 	}
 }

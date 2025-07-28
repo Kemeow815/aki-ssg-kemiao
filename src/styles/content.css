@@ -21,12 +21,3 @@
 mjx-container > svg {
 	display: inline !important;
 }
-
-/* medium-zoom Compatible */
-.medium-zoom-overlay {
-	z-index: 40;
-	background-color: rgba(0, 0, 0, 0.3);
-}
-.medium-zoom-image--opened {
-	z-index: 50;
-}
