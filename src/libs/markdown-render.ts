@@ -35,7 +35,7 @@ import { remarkMeme } from "./markdown-extension/remark-meme";
 import BilibiliVideo from "@/components/ExtendedMarkdown/BilibiliVideo/BilibiliVideo";
 import NeteaseMusic from "@/components/ExtendedMarkdown/NeteaseMusic/NeteaseMusic";
 import FriendLinks from "@/components/ExtendedMarkdown/FriendLinks/FriendLinks";
-import Image from "@/components/PostComponents/Image";
+import Image from "@/components/PostComponents/Image/Image";
 import * as Chat from "@/components/ExtendedMarkdown/Chat/Chat";
 import Meme from "@/components/ExtendedMarkdown/Meme/Meme";
 
