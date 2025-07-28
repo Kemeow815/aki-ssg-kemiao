@@ -2,44 +2,10 @@ diff --git a/CHANGELOG.md b/CHANGELOG.md
 deleted file mode 100644
 index d1237542591ecc43143d067ce1437567698615ec..0000000000000000000000000000000000000000
 diff --git a/dist/style.css b/dist/style.css
-index b5e0d320deaef0c4584b8810e9c4f211d8252ef7..72d60fdbaf0a8d43e5c1b240b882d33359622b1f 100644
+index b5e0d320deaef0c4584b8810e9c4f211d8252ef7..f5af945358aef67d4e907ace44ee71e71dc92790 100644
 --- a/dist/style.css
 +++ b/dist/style.css
-@@ -1 +1,35 @@
+@@ -1 +1 @@
 -.medium-zoom-overlay{position:fixed;top:0;right:0;bottom:0;left:0;opacity:0;transition:opacity .3s;will-change:opacity}.medium-zoom--opened .medium-zoom-overlay{cursor:pointer;cursor:zoom-out;opacity:1}.medium-zoom-image{cursor:pointer;cursor:zoom-in;transition:transform .3s cubic-bezier(.2,0,.2,1)!important}.medium-zoom-image--hidden{visibility:hidden}.medium-zoom-image--opened{position:relative;cursor:pointer;cursor:zoom-out;will-change:transform}
 \ No newline at end of file
-+.medium-zoom-overlay {
-+    position: fixed;
-+    top: 0;
-+    right: 0;
-+    bottom: 0;
-+    left: 0;
-+    opacity: 0;
-+    z-index: 40;
-+    transition: opacity .3s;
-+    will-change: opacity
-+}
-+
-+.medium-zoom--opened .medium-zoom-overlay {
-+    cursor: pointer;
-+    cursor: zoom-out;
-+    opacity: 1
-+}
-+
-+.medium-zoom-image {
-+    cursor: pointer;
-+    cursor: zoom-in;
-+    transition: transform .3s cubic-bezier(.2, 0, .2, 1) !important
-+}
-+
-+.medium-zoom-image--hidden {
-+    visibility: hidden
-+}
-+
-+.medium-zoom-image--opened {
-+    position: relative;
-+    cursor: pointer;
-+    cursor: zoom-out;
-+    z-index: 50;
-+    will-change: transform
-+}
++.medium-zoom-overlay {position: fixed;top: 0;right: 0;bottom: 0;left: 0;opacity: 0;z-index: 40;transition: opacity .3s;will-change: opacity }.medium-zoom--opened .medium-zoom-overlay {cursor: pointer;cursor: zoom-out;opacity: 1 }.medium-zoom-image {cursor: pointer;cursor: zoom-in;transition: transform .3s cubic-bezier(.2, 0, .2, 1) !important }.medium-zoom-image--hidden {visibility: hidden }.medium-zoom-image--opened {position: relative;cursor: pointer;cursor: zoom-out;z-index: 50;will-change: transform }
