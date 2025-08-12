@@ -31,6 +31,8 @@ import useSWR from "swr";
 import { ErrorBoundary, FallbackProps } from "react-error-boundary";
 import { delay } from "@/utils/delay";
 import { scrollIntoViewById } from "@/utils/scrollIntoView";
+import { atomWithStorage } from "jotai/utils";
+import { useAtom } from "jotai";
 
 const api_option = {
 	serverURL: (config.comment as WalineCommentConfig).waline_api,
@@ -49,6 +51,10 @@ const setRidContext = createContext((v: string) => {
 const setAtContext = createContext((v: string) => {
 	console.warn("setAtContext is not set: ", v);
 });
+
+const nickStorage = atomWithStorage("waline-nick", "");
+const mailStorage = atomWithStorage("waline-mail", "");
+const urlStorage = atomWithStorage("waline-url", "");
 
 function Reply() {
 	return (
@@ -148,9 +154,12 @@ function WalineCommentArea({ updateFunction }: { updateFunction: () => void }) {
 	const setPid = useContext(setPidContext);
 	const setRid = useContext(setRidContext);
 	const setAt = useContext(setAtContext);
-	const [nick, setNick] = useState("");
-	const [mail, setMail] = useState("");
-	const [url, setUrl] = useState("");
+	const [nickStorageValue, setNickStorageValue] = useAtom(nickStorage);
+	const [mailStorageValue, setMailStorageValue] = useAtom(mailStorage);
+	const [urlStorageValue, setUrlStorageValue] = useAtom(urlStorage);
+	const [nick, setNick] = useState(nickStorageValue);
+	const [mail, setMail] = useState(mailStorageValue);
+	const [url, setUrl] = useState(urlStorageValue);
 	const [submitAvailable, setSubmitAvailable] = useState(true);
 	const [content, setContent] = useState("");
 	const onSubmit = useCallback(() => {
@@ -186,9 +195,9 @@ function WalineCommentArea({ updateFunction }: { updateFunction: () => void }) {
 				setSubmitAvailable(true);
 				return;
 			}
-			setNick("");
-			setMail("");
-			setUrl("");
+			setNickStorageValue(nick);
+			setMailStorageValue(mail);
+			setUrlStorageValue(url);
 			setPid("");
 			setRid("");
 			setAt("");
@@ -205,6 +214,9 @@ function WalineCommentArea({ updateFunction }: { updateFunction: () => void }) {
 		pid,
 		rid,
 		at,
+		setNickStorageValue,
+		setMailStorageValue,
+		setUrlStorageValue,
 		setPid,
 		setRid,
 		setAt,
