@@ -21,7 +21,7 @@ export const config: SiteConfig = createConfig({
 			},
 		},
 		comment: { // 如下设置启用 Waline 评论
-     type: "disabled",
+              type: "disable",
 //			enabled: "waline",
 //			waline_api: ""
 		},
