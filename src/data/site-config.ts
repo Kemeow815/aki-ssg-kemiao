@@ -41,4 +41,4 @@ export const config: SiteConfig = createConfig({
 				url: "https://example.com" // 链接 URL
 			}
 		]
-	};);
+	});
