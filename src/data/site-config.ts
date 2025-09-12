@@ -20,9 +20,6 @@ export const config: SiteConfig = createConfig({
 				dark: "https://blog-oss.allenyou.top/image/658ad4c208349.png", // 深色模式
 			},
 		},
-		comment: { // 评论配置
-			enabled: "false", // 禁用评论功能
-		},
 		comment: { // 如下设置启用 Waline 评论
 			enabled: "waline",
 			waline_api: ""
