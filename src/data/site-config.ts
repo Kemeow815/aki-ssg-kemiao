@@ -14,7 +14,7 @@ export const config: SiteConfig = createConfig({
 		},
 		style: {
 			primary_color: "#6db0ec", // 网站主题色
-			header_image: "https://blog-oss.allenyou.top/image/658ad4c208349.png", // 网站 Header 图像
+//			header_image: "https://blog-oss.allenyou.top/image/658ad4c208349.png", // 网站 Header 图像
 			header_image: { // 也可以用这种方法为深色模式和浅色模式分别配置不同的图像
 				default: "https://blog-oss.allenyou.top/image/658ad4c208349.png", // 浅色模式
 				dark: "https://blog-oss.allenyou.top/image/658ad4c208349.png", // 深色模式
