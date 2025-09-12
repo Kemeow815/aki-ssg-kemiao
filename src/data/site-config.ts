@@ -21,8 +21,9 @@ export const config: SiteConfig = createConfig({
 			},
 		},
 		comment: { // 如下设置启用 Waline 评论
-			enabled: "waline",
-			waline_api: ""
+     type: "disabled",
+//			enabled: "waline",
+//			waline_api: ""
 		},
 		optimize: { // 优化配置
 			gravatar_mirror: "https://gravatar.com/avatar/", // Gravatar 镜像源
